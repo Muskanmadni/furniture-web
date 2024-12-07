@@ -7,7 +7,7 @@ export const Footer = () => {
     <>
       <div className='px-6 md:px-12 py-8 bg-[#2A254B] footer'>
         <div className="flex flex-wrap gap-12 md:gap-[100px] lg:gap-[200px]">
-          {/* Menu Section */}
+          {/* Menu area */}
           <div className="text-gray-500 w-full sm:w-auto">
             <h1 className="text-lg md:text-xl font-bold">Menu</h1>
             <div className='space-y-2'>
@@ -19,7 +19,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Categories Section */}
+          {/* Categories area*/}
           <div className="text-gray-500 w-full sm:w-auto">
             <h1 className="text-lg md:text-xl font-bold">Categories</h1>
             <div className='space-y-2'>
@@ -31,7 +31,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Company Section */}
+          {/* Company area */}
           <div className="text-gray-500 w-full sm:w-auto">
             <h1 className="text-lg md:text-xl font-bold">Our Company</h1>
             <div className='space-y-2'>
@@ -43,7 +43,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Mailing List Section */}
+          {/* Mail */}
           <div className="text-white w-full sm:w-auto">
             <h1 className="text-lg md:text-xl font-bold">Join our mailing list</h1>
             <div className='mt-4'>
@@ -61,7 +61,7 @@ export const Footer = () => {
 
         <hr className='bg-[#4E4D93] my-8' />
 
-        {/* Footer Bottom Section */}
+        {/* Footer area */}
         <div className='flex flex-wrap justify-between items-center text-white gap-4'>
           <div>
             <h1>Copyright 2022 Avion LTD</h1>

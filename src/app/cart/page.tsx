@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import Image from "next/image";
+import cartimage1 from "@/images/products/Product Image (1).png"
+import cartimage2 from "@/images/products/aboutpageImage2.png"
 
 
 const Cart = () => {
@@ -13,8 +16,7 @@ const Cart = () => {
                 <h1 className="text-lg font-semibold">Product</h1>
                 <div className="flex items-start justify-between mt-8">
                     <div className="flex">
-                        <img src="/images/Product Image.png" alt="Product 1"
-                        className="w-20 h-20 sm:w-28 sm:h-28 transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1" />
+                        <Image src={cartimage1}  alt="image" className="w-20 h-20 sm:w-28 sm:h-28 transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"></Image>
                         <div className="ml-6">
                             <h1 className="text-base sm:text-lg font-medium">Graystone vase</h1>
                             <p className="text-sm mt-2">A timeless ceramic vase with a tri-color grey glaze.</p>
@@ -29,8 +31,7 @@ const Cart = () => {
                         </div>
                         <div className="flex items-start justify-between mt-8">
                             <div className="flex">
-                                <img src="/images/Product Image 2.png"alt="Product 2"
-                                className="w-20 h-20 sm:w-28 sm:h-28 transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1" />
+                                <Image src={cartimage2} alt="Product 2" className="w-20 h-20 sm:w-28 sm:h-28 transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"></Image>
                                 <div className="ml-6">
                                     <h1 className="text-base sm:text-lg font-medium">Basic white vase</h1>
                                     <p className="text-sm mt-2">Beautiful and simple, this is one for the classics.</p>

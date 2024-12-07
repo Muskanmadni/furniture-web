@@ -187,3 +187,17 @@ border:none
   display: flex;
   align-items: center;
 }
+@media (max-width:768px ) and (min-width:480px){
+  .branddatils{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 30px;
+  }
+  .header2{
+    width: 20px;
+  }
+  .newsletter-section{
+    width: 100px;
+  }
+}
