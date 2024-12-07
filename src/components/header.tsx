@@ -1,9 +1,8 @@
 
 
-
 "use client";
 
-
+import Link from "next/link";
 import { MenuOutlined, MenuUnfoldOutlined, SearchOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import React, { useState } from 'react';
 import { Menu, MenuIcon, MenuSquareIcon, ShoppingCart, User2Icon, UserCircle, UserIcon, UserRoundCheckIcon } from "lucide-react";
@@ -28,7 +27,9 @@ export default function Header(){
             <label className="logo">Avion</label>
             <ul className={`buttons justify-end ${isMenuOpen ? 'show' : ''}`}>
                 <li className="navbutton">home</li>
+                <Link href={"Aboutpage"}>
                 <li className="navbutton">about</li>
+                </Link>
                 <li className="navbutton">cart</li>
                 <li className="navbutton">wishlist</li>
                 <li>
@@ -36,11 +37,13 @@ export default function Header(){
                         <SearchOutlined/>
                     </label> 
                 </li>
+                <Link href={"cart"}>
                 <li>
                     <label htmlFor="searched" className="searchbtn  " onClick={Searchbar}>
                         <ShoppingCart/>
                     </label>
                 </li>
+                </Link>
                 <li>
                     <label htmlFor="searched" className="searchbtn " onClick={Searchbar}>
                         <UserCircle/>

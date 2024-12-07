@@ -1,6 +1,7 @@
 
+import { Footer } from "@/components/footer";
 import { HeroSection } from "@/components/herosection";
-import { BrandDetails } from "@/components/homepage";
+import { BrandDetails, Newsletter, PopularProductlist, Productslisthomepage } from "@/components/homepage";
 
 
 export default function home(){
@@ -8,6 +9,10 @@ export default function home(){
     <div>
       <HeroSection/>
       <BrandDetails/>
+      <Productslisthomepage/>
+      <PopularProductlist/>
+      <Newsletter/>
+      <Footer/>
     </div>
   )
 }
