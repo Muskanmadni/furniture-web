@@ -50,22 +50,22 @@ export function Productslisthomepage(){
         <div className="bg-white w-full h-96 ">
             <h4 className="font-sans font-thin  ml-40  text-4xl pt-12">New ceramics</h4>
             <div className="homeListingCard flex" >
-                <Card className="mt-5 homeListingCard sm:w-28 sm:h-28">
+                <Card className="mt-5 homeListingCard">
                     <CardHeader className="w-72"><Image src={dancyChair} alt="productlisting"></Image></CardHeader>
                     <CardTitle>The Dandy chair</CardTitle>
                     <CardDescription>£250</CardDescription>
                 </Card>
-                <Card className="homeListingCard sm:w-28 sm:h-28">
+                <Card className="homeListingCard">
                     <CardHeader className="w-72 "><Image src={list3} alt="productlisting"></Image></CardHeader>
                     <CardTitle>Rustic Vase Set</CardTitle>
                     <CardDescription>£155</CardDescription>
                 </Card>
-                <Card className="homeListingCard sm:w-28 sm:h-28">
+                <Card className="homeListingCard">
                     <CardHeader className="w-72"><Image src={list4} alt="productlisting"></Image></CardHeader>
                     <CardTitle>The Silky Vase</CardTitle>
                     <CardDescription>£125</CardDescription>
                 </Card>
-                <Card className="homeListingCard sm:w-28 sm:h-28">
+                <Card className="homeListingCard">
                     <CardHeader className="w-72"><Image src={list2} alt="productlisting"></Image></CardHeader>
                     <CardTitle>The Lucy Lamp</CardTitle>
                     <CardDescription>£399</CardDescription>
@@ -84,17 +84,17 @@ export function PopularProductlist(){
         <div className="w-full h-96 bg-white mt-96 popular-product-list">
             <div><h2 className="font-thin text-3xl ml-32">Our popular products</h2></div>
             <div className="popular-product-list-cards">
-                <Card className="border-none sm:w-28 sm:h-28">
+                <Card className="border-none">
                     <CardHeader><Image src={sofa} alt="image"></Image></CardHeader>
                     <CardDescription className="ml-5">The Poplar suede sofa</CardDescription>
                     <CardDescription className="ml-5">£980</CardDescription>
                 </Card>
-                <Card className="border-none sm:w-28 sm:h-28">
+                <Card className="border-none">
                     <CardHeader><Image src={dancyChair} alt="image"></Image></CardHeader>
                     <CardDescription className="ml-5">The Dandy chair</CardDescription>
                     <CardDescription className="ml-5">£250</CardDescription>
                 </Card>
-                <Link href={"productListingpage sm:w-28 sm:h-28"}>
+                <Link href={"productListingpage"}>
                 <Card className="border-none">
                     
                     <CardHeader><Image src={blackchair} alt="image"></Image></CardHeader>
