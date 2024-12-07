@@ -16,7 +16,7 @@ export default function Header(){
   };
   const [isSearchOpen, SetIsSearchOpen] = useState(false);
   const Searchbar = ()=> {
-    SetIsSearchOpen(!isMenuOpen);
+    SetIsSearchOpen(!isSearchOpen);
   };
     return(
         <nav className="bg-white w-full h-20 navbar">
