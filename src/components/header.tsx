@@ -5,7 +5,7 @@
 import Link from "next/link";
 import {  MenuFoldOutlined, SearchOutlined, } from "@ant-design/icons";
 import React, { useState } from 'react';
-import { LucideMenu, ShoppingCart, UserCircle,} from "lucide-react";
+import { ShoppingCart, UserCircle,} from "lucide-react";
 
 
 export default function Header(){
