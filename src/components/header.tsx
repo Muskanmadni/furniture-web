@@ -3,9 +3,9 @@
 "use client";
 
 import Link from "next/link";
-import { MenuOutlined, MenuUnfoldOutlined, SearchOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
+import { MenuOutlined, SearchOutlined, } from "@ant-design/icons";
 import React, { useState } from 'react';
-import { Menu, MenuIcon, MenuSquareIcon, ShoppingCart, User2Icon, UserCircle, UserIcon, UserRoundCheckIcon } from "lucide-react";
+import { ShoppingCart, UserCircle,} from "lucide-react";
 
 
 export default function Header(){

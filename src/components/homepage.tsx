@@ -1,4 +1,4 @@
-import { CheckCircleIcon, Recycle, RecycleIcon, Sofa, Wallet } from "lucide-react"
+import { CheckCircleIcon,  } from "lucide-react"
 import { CardHeader , CardDescription ,CardTitle  ,Card } from "./ui/card"
 import { CreditCardOutlined, TruckOutlined } from "@ant-design/icons"
 import recycle from "@/images/logos&Icons/Sprout.png"
