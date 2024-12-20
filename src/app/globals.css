@@ -129,9 +129,9 @@
   }
 }
 /* hero-section responsive small mobile */
-@media (max-width:1140px ) and (min-width:1025px){
+@media (max-width:1240px ) and (min-width:1025px){
   .hero-section-image{
-    display: block;
+    display: flex;
     position: absolute;
     bottom: 24px;
     right:0;

@@ -5,7 +5,7 @@
 import Link from "next/link";
 import {  MenuFoldOutlined, SearchOutlined, } from "@ant-design/icons";
 import React, { useState } from 'react';
-import { ShoppingCart, UserCircle,} from "lucide-react";
+import { MenuIcon, ShoppingCart, UserCircle,} from "lucide-react";
 
 
 export default function Header(){
@@ -22,10 +22,10 @@ export default function Header(){
         <nav className="bg-white w-full h-20 navbar">
             <input type="checkbox" id="check"/>
             <label htmlFor="check" className="checkbtn" onClick={toggleMenu}>
-                <MenuFoldOutlined/>
+                <MenuIcon className="text-black"/>
             </label>
             <label className="logo">Avion</label>
-            <ul className={`buttons justify-end ${isMenuOpen ? 'show' : ''}`}>
+            <ul className={`buttons justify-end  ${isMenuOpen ? 'show' : ''}`}>
                 <Link href={"/"}>
                 <li className="navbutton">home</li>
                 </Link>
