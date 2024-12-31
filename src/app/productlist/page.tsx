@@ -3,7 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 
-import { Card, CardDescription, CardHeader , CardFooter , CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader , CardTitle } from "@/components/ui/card";
 
 import { CeramicProducts } from '@/components/ceramicproduct';
 
@@ -58,6 +58,7 @@ export default function ProductList() {
                             </button>
                         </div>
                     </div>
+
                     <CeramicProducts/>
                 </Card>
                 
