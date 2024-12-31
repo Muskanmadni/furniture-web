@@ -58,9 +58,6 @@ export default function ProductList() {
                             </button>
                         </div>
                     </div>
-                    <CardFooter>
-                        <p></p>
-                    </CardFooter>
                     <CeramicProducts/>
                 </Card>
                 
