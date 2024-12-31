@@ -1,6 +1,6 @@
 'use client'
 import { CeramicProducts } from "@/components/ceramicproduct"
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardDescription} from "@/components/ui/card"
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
