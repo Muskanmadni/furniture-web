@@ -3,7 +3,7 @@
 "use client";
 
 import Link from "next/link";
-import {  MenuFoldOutlined, SearchOutlined, } from "@ant-design/icons";
+import { SearchOutlined, } from "@ant-design/icons";
 import React, { useState } from 'react';
 import { MenuIcon, ShoppingCart, UserCircle,} from "lucide-react";
 
@@ -22,10 +22,10 @@ export default function Header(){
         <nav className="bg-white w-full h-20 navbar">
             <input type="checkbox" id="check"/>
             <label htmlFor="check" className="checkbtn" onClick={toggleMenu}>
-                <MenuIcon className="text-black"/>
+                <MenuIcon className="text-black "/>
             </label>
             <label className="logo">Avion</label>
-            <ul className={`buttons justify-end  ${isMenuOpen ? 'show' : ''}`}>
+            <ul className={`buttons justify-center  ${isMenuOpen ? 'show' : ''}`}>
                 <Link href={"/"}>
                 <li className="navbutton">home</li>
                 </Link>
@@ -59,7 +59,7 @@ export default function Header(){
 export function Header2(){
     return(
         <nav className="bg-gray-50 w-full h-14">
-            <ul className="w-full h-16 flex items-center justify-center gap-10 text-gray-400 header2 ">
+            <ul className="w-full h-16 flex items-center justify-center gap-10 text-gray-400 header2 "> 
                 <li>All products</li>
                 <li>Plant Pot</li>
                 <li>Ceramics</li>

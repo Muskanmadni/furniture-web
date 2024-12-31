@@ -9,7 +9,7 @@
 }
 .logo{
   display: flex;
-  position: fixed;
+  position: absolute;
   font-size: 30px;
   padding-left: 50px;
   padding-top:20px ;
@@ -24,7 +24,7 @@
 }
 .buttons {
 
-  margin-right: 80px;
+  justify-content: flex-end;
   display: flex; /* Add flexbox */
   align-items: center; /* Align items vertically */
   gap: 40px;
@@ -44,7 +44,7 @@
   .buttons {
     position: fixed;
     width: 100%;
-    background-color: aquamarine;
+    background-color: #494465;
     top: 120px;
     left: -100%; /* Initially off-screen */
     text-align: center;
@@ -120,12 +120,14 @@
   }
 }
 /* hero-section responsive small mobile */
-@media (max-width:1024px ) and (min-width:769px) {
+@media (max-width:1200px ) and (min-width:769px) {
   .hero-section-image{
     display: block;
     position: absolute;
-    bottom: 24px;
-    right:0;
+    top: 215px;
+    right:200px;
+    width: 490px;
+    height: 450px;
   }
 }
 /* hero-section responsive small mobile */
@@ -145,6 +147,9 @@
   gap: 60px;
 
 }
+
+
+
 
 /* homeproduct listing */
 .homeListingCard{
@@ -191,13 +196,37 @@ border:none
   .branddatils{
     display: flex;
     flex-direction: column;
-    position: absolute;
-    left: 30px;
+    margin-top: 100px;
+    margin-left: 30px;
   }
   .header2{
     width: 20px;
   }
   .newsletter-section{
-    width: 100px;
+    margin-top: 600px;
+
+
+  }
+  .newsletterText{
+    text-align: center;
+  }
+  .newsheading{
+    font-size: 30px;
+  }
+  .signupSection{
+    margin-right: 680px; 
+  }
+
+  .popular-product-list-cards{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-top: 800px;
+
+  }
+  .homeListingCard{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
   }
 }
