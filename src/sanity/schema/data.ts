@@ -5,12 +5,12 @@ export const productData = {
     fields: [
         {
             name: "prduct",
-            tittle: "product name",
+            title: "product name",
             type: "string",
         },
         {
             name: "description",
-            tittle: "product description",
+            title: "product description",
             type: "string",
         },
         {
