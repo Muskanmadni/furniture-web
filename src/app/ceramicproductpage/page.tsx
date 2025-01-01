@@ -14,7 +14,7 @@ interface CeramicProducts {
     _id: string
   }
 
-export default function ProductList() {
+export default async function CeramicProductPage() {
     const searchParams = useSearchParams()
   const [ceramicpage, setCeramicpage] = useState<CeramicProducts | null>(null)
 
@@ -25,7 +25,7 @@ export default function ProductList() {
     }
   }, [searchParams])
 
-  if (!ceramicpage) return <div>Loading...</div>
+  if (!ceramicpage) return  <div>Loading...</div>
 
     return(
         <>

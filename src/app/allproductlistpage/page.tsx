@@ -17,7 +17,7 @@ interface Product {
   listproductdescription: string
 }
 
-export default function ProductList() {
+export default async function AllProductListPage() {
   const searchParams = useSearchParams()
   const [product, setProduct] = useState<Product | null>(null)
 
