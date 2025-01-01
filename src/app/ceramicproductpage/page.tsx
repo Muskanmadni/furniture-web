@@ -3,38 +3,56 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {CeramicProducts}from "@/components/ceramicproduct";
-
+import Image from 'next/image'
+import { Suspense } from 'react';
 //this page is for ceramicproduct page which on homepage for vierwing the single product details   
 
-interface CeramicProducts {
-    imageURL: string
-    name: string
-    price: string
-    description: string
-    _id: string
-  }
 
-export default async function CeramicProductPage() {
-    const searchParams = useSearchParams()
-  const [ceramicpage, setCeramicpage] = useState<CeramicProducts | null>(null)
+
+interface CeramicProduct {
+  _id: string
+  imageURL: string
+  name: string
+  description: string
+  price: number
+}
+
+export default function CeramicProductPage() {
+  return (
+      <Suspense fallback={<div>Loading...</div>}>
+          <ProductContent />
+      </Suspense>
+  )
+}
+
+function ProductContent() {
+  const searchParams = useSearchParams()
+  const [ceramicpage, setCeramicpage] = useState<CeramicProduct | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const productParam = searchParams.get('product')
-    if (productParam) {
-      setCeramicpage(JSON.parse(productParam))
-    }
+      try {
+          const productData = searchParams.get('product')
+          if (productData) {
+              setCeramicpage(JSON.parse(productData))
+          }
+      } catch (err) {
+          setError('Failed to load product')
+          console.error('Error parsing product:', err)
+      }
   }, [searchParams])
 
-  if (!ceramicpage) return  <div>Loading...</div>
+  if (error) return <div className="text-red-500 p-4">{error}</div>
+  if (!ceramicpage) return <div className="p-4">Loading product...</div>
 
-    return(
-        <>
+  return (
+    <>
         <section>
             
                 <Card  className="flex-col md:flex-row gap-8 items-center ">
                     <div className="flex flex-col md:flex-row w-full">
                         <CardHeader className="w-full md:w-1/2 h-auto">
-                            {ceramicpage.imageURL  && <img src={ceramicpage.imageURL} alt="image" className="w-full h-auto object-cover" />}
+                            {ceramicpage.imageURL  && <Image width={305} height={375} src={ceramicpage.imageURL} alt="image" className="w-full h-auto object-cover"></Image>}
                         </CardHeader>
                         <div className="flex flex-col md:w-1/2 mt-10">
                             <CardTitle className='px-4 md:px-10 py-6 flex flex-col justify-center'>
@@ -58,5 +76,5 @@ export default async function CeramicProductPage() {
                 
         </section>
     </>
-    )
+  )
 }

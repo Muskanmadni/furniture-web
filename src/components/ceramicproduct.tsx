@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from "next/link"
 import { CardHeader , CardFooter,CardTitle  ,Card, CardDescription } from "./ui/card"
 import { GetproductData} from "@/sanity/sanity.query";
-
+import Image from 'next/image'
 
 export function CeramicProducts(){
     interface  ceramicProducts{
@@ -43,7 +43,7 @@ export function CeramicProducts(){
                 >
                 <Card key={Data[0]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
-                    {Data[0].imageURL && <img src={Data[0].imageURL} alt="image" />}
+                    {Data[0].imageURL && <Image width={300} height={600} src={Data[0].imageURL} alt="image" ></Image>}
                   </CardHeader>
                   <CardTitle><p className="ml-6">{Data[0].name}</p></CardTitle>
                   <CardDescription className='hidden'>{Data[0].description}</CardDescription>
@@ -62,7 +62,7 @@ export function CeramicProducts(){
                 >
                 <Card key={Data[1]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
-                    {Data[1].imageURL && <img src={Data[1].imageURL} alt="image" />}
+                    {Data[1].imageURL && <Image width={300} height={600} src={Data[1].imageURL} alt="image"></Image>}
                   </CardHeader>
                   <CardTitle><p className="ml-6">{Data[1].name}</p></CardTitle>
                   <CardDescription className='hidden'>{Data[0].description}</CardDescription>
@@ -83,7 +83,7 @@ export function CeramicProducts(){
                 
                 <Card key={Data[2]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
-                    {Data[1].imageURL && <img src={Data[2].imageURL} alt="image" />}
+                    {Data[1].imageURL && <Image width={300} height={600} src={Data[2].imageURL} alt="image"></Image>}
                   </CardHeader>
                   <CardTitle><p className="ml-6">{Data[2].name}</p></CardTitle>
                   <CardDescription className='hidden'>{Data[0].description}</CardDescription>
@@ -104,7 +104,7 @@ export function CeramicProducts(){
                 >
                 <Card key={Data[3]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
-                    {Data[3].imageURL && <img src={Data[3].imageURL} alt="image" />}
+                    {Data[3].imageURL && <Image width={300} height={600} src={Data[3].imageURL} alt="image"></Image>}
                   </CardHeader>
                   <CardTitle><p className="ml-6">{Data[3].name}</p></CardTitle>
                   <CardDescription className='hidden'>{Data[0].description}</CardDescription>

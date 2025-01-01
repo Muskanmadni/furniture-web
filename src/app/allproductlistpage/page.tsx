@@ -3,9 +3,8 @@ import { CeramicProducts } from "@/components/ceramicproduct"
 import { Card, CardHeader, CardTitle, CardDescription} from "@/components/ui/card"
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-
-
-//this page is for productlist page whcih is when we click on view collection button for vierwing the single product details   
+import Image from 'next/image'
+import { Suspense } from "react"
 
 
 
@@ -13,22 +12,37 @@ interface Product {
   _id: string
   imageURL: string
   listproduct: string
-  listproductprice: string
+  listproductprice: number
   listproductdescription: string
 }
 
-export default async function AllProductListPage() {
+export default function AllProductListPage() {
+  return (
+      <Suspense fallback={<div>Loading...</div>}>
+          <ProductContent />
+      </Suspense>
+  )
+}
+
+function ProductContent() {
   const searchParams = useSearchParams()
   const [product, setProduct] = useState<Product | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const productParam = searchParams.get('product')
-    if (productParam) {
-      setProduct(JSON.parse(productParam))
-    }
+      try {
+          const productParam = searchParams.get('product')
+          if (productParam) {
+              setProduct(JSON.parse(productParam))
+          }
+      } catch (err) {
+          setError('Error loading product')
+          console.error('Error parsing product:', err)
+      }
   }, [searchParams])
 
-  if (!product) return <div>Loading...</div>
+  if (error) return <div className="text-red-500 p-4">{error}</div>
+  if (!product) return <div className="p-4">Loading...</div>
 
   return (
     <section>
@@ -36,7 +50,7 @@ export default async function AllProductListPage() {
         <div className="flex flex-col md:flex-row w-full">
           <CardHeader className="w-full md:w-1/2 h-auto">
             {product.imageURL && (
-              <img src={product.imageURL} alt="image" className="w-full h-auto object-cover" />
+              <Image width={305} height={375} src={product.imageURL} alt="image" className="w-full h-auto object-cover"></Image> 
             )}
           </CardHeader>
           <div className="flex flex-col md:w-1/2 mt-10">
@@ -56,5 +70,6 @@ export default async function AllProductListPage() {
         <CeramicProducts/>
       </Card>
     </section>
+      
   )
 }

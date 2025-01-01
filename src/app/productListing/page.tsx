@@ -8,6 +8,13 @@ import { CaretDownOutlined } from "@ant-design/icons";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { GetproductListData} from "@/sanity/sanity.query";
 
+interface Product {
+    _id: string;
+    imageURL: string;
+    listproduct: string;
+    listproductdescription: string;
+    listproductprice: number;
+  }
 
 export default  function ProductList(){
     
@@ -25,7 +32,7 @@ export default  function ProductList(){
     return (
         <div>
             <div className="relative w-full h-[200px]">
-                <Image src={headerImage} alt="image" layout="fill" objectFit="cover" />
+                <Image src={headerImage} alt="image" layout="fill" objectFit="cover" ></Image>
                 <div className="absolute inset-0 flex items-center justify-start sm:justify-center md:justify-center lg:justify-start">
                     <h1 className="text-white text-4xl">Our Products</h1>
                 </div>
@@ -56,7 +63,7 @@ export default  function ProductList(){
                 </table>
             </div>
             <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ml-20 text-justify">
-                {Array.isArray(products) &&  products.map((product:any)  => (
+                {Array.isArray(products) &&  products.map((product: Product)  => (
                     <Link 
                     key={product._id}
                     href={{
@@ -67,7 +74,7 @@ export default  function ProductList(){
                     <Card key={product._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
                         
                         <CardHeader className=" w-[250px]">
-                            {product.imageURL && <img src={product.imageURL} alt="image"  />}
+                            {product.imageURL && <Image width={305} height={375} src={product.imageURL} alt="image" ></Image>}
     
                         </CardHeader>
 

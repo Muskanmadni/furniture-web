@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link"
 import { GetpopularproductListData } from "@/sanity/sanity.query"
-
+import Image from 'next/image'
 export function PopularProductlist(){
 
     interface ProductData {
@@ -34,7 +34,7 @@ export function PopularProductlist(){
           <h1 className='text-2xl'>Our popular products</h1>
 
           {/* Flexbox layout: stack on small screens, side by side on medium and large screens */}
-          <div className='flex flex-col md:flex-row gap-8 mt-8'>
+          <div className='flex flex-col md:flex-row gap-8 mt-8 '>
             {/* Product 1 */}
               {Array.isArray(Popularproducts) && Popularproducts.length > 0 && Popularproducts[1] && (
                 <Link 
@@ -45,7 +45,7 @@ export function PopularProductlist(){
                 >
                 <Card key={Popularproducts[1]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify ">
                   <CardHeader className=" w-[700px]">
-                    {Popularproducts[1].imageURL && <img src={Popularproducts[1].imageURL} alt="image" />}
+                    {Popularproducts[1].imageURL && <Image width={500} height={600} src={Popularproducts[1].imageURL} alt="image" ></Image>}
                   </CardHeader>
                   <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Popularproducts[1].prduct}</p></CardTitle>
                   <CardFooter>
@@ -63,9 +63,9 @@ export function PopularProductlist(){
                   query: { product: JSON.stringify(Popularproducts[0]) }
                 }}
                 >
-                <Card key={Popularproducts[0]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify ml-[500px]">
-                  <CardHeader className=" w-[350px] ">
-                    {Popularproducts[0].imageURL && <img src={Popularproducts[0].imageURL} alt="image" />}
+                <Card key={Popularproducts[0]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify  ">
+                  <CardHeader className=" w-[300px]  ">
+                    {Popularproducts[0].imageURL && <Image width={300} height={300} src={Popularproducts[0].imageURL} alt="image" ></Image>}
                   </CardHeader>
                   <CardTitle><p className="ml-6 ">{Popularproducts[0].prduct}</p></CardTitle>
                   <CardFooter>
@@ -83,9 +83,9 @@ export function PopularProductlist(){
                 }}
                 >
                 
-                <Card key={Popularproducts[2]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify ml-[200px]">
+                <Card key={Popularproducts[2]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify ml-[50px] ">
                   <CardHeader className=" w-[350px] ">
-                    {Popularproducts[2].imageURL && <img src={Popularproducts[2].imageURL} alt="image" />}
+                    {Popularproducts[2].imageURL && <Image width={300} height={600} src={Popularproducts[2].imageURL} alt="image" ></Image>}
                   </CardHeader>
                   <CardTitle><p className="ml-6">{Popularproducts[2].prduct}</p></CardTitle>
                   <CardFooter>
