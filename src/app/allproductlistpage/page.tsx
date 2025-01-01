@@ -36,7 +36,7 @@ export default function ProductList() {
         <div className="flex flex-col md:flex-row w-full">
           <CardHeader className="w-full md:w-1/2 h-auto">
             {product.imageURL && (
-              <Image src={product.imageURL} alt="image" className="w-full h-auto object-cover" />
+              <img src={product.imageURL} alt="image" className="w-full h-auto object-cover" />
             )}
           </CardHeader>
           <div className="flex flex-col md:w-1/2 mt-10">

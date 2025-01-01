@@ -67,7 +67,7 @@ export default  function ProductList(){
                     <Card key={product._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
                         
                         <CardHeader className=" w-[250px]">
-                            {product.imageURL && <Image src={product.imageURL} alt="image"  />}
+                            {product.imageURL && <img src={product.imageURL} alt="image"  />}
     
                         </CardHeader>
 

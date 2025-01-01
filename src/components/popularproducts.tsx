@@ -45,7 +45,7 @@ export function PopularProductlist(){
                 >
                 <Card key={Popularproducts[1]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify ">
                   <CardHeader className=" w-[700px]">
-                    {Popularproducts[1].imageURL && <Image src={Popularproducts[1].imageURL} alt="image" />}
+                    {Popularproducts[1].imageURL && <img src={Popularproducts[1].imageURL} alt="image" />}
                   </CardHeader>
                   <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Popularproducts[1].prduct}</p></CardTitle>
                   <CardFooter>
