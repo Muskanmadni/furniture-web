@@ -3,7 +3,7 @@ import { CeramicProducts } from "@/components/ceramicproduct"
 import { Card, CardHeader, CardTitle, CardDescription} from "@/components/ui/card"
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
+
 
 //this page is for productlist page whcih is when we click on view collection button for vierwing the single product details   
 

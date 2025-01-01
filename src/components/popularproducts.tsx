@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link"
 import { GetpopularproductListData } from "@/sanity/sanity.query"
-import Image from 'next/image';
+
 export function PopularProductlist(){
 
     interface ProductData {
