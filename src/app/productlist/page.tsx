@@ -2,7 +2,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-import Image from 'next/image';
+
 import { Card, CardDescription, CardHeader , CardTitle } from "@/components/ui/card";
 
 import { CeramicProducts } from '@/components/ceramicproduct';
