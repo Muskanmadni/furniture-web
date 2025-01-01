@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {CeramicProducts}from "@/components/ceramicproduct";
-
+import Image from 'next/image';
 //this page is for ceramicproduct page which on homepage for vierwing the single product details   
 
 interface CeramicProducts {
@@ -34,7 +34,7 @@ export default function ProductList() {
                 <Card  className="flex-col md:flex-row gap-8 items-center ">
                     <div className="flex flex-col md:flex-row w-full">
                         <CardHeader className="w-full md:w-1/2 h-auto">
-                            {ceramicpage.imageURL  && <img src={ceramicpage.imageURL} alt="image" className="w-full h-auto object-cover" />}
+                            {ceramicpage.imageURL  && <Image  src={ceramicpage.imageURL} alt="image" className="w-full h-auto object-cover" />}
                         </CardHeader>
                         <div className="flex flex-col md:w-1/2 mt-10">
                             <CardTitle className='px-4 md:px-10 py-6 flex flex-col justify-center'>

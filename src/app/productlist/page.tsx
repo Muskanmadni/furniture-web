@@ -2,7 +2,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-
+import Image from 'next/image';
 import { Card, CardDescription, CardHeader , CardTitle } from "@/components/ui/card";
 
 import { CeramicProducts } from '@/components/ceramicproduct';
@@ -42,7 +42,7 @@ export default function ProductList() {
                 <Card  className="flex-col md:flex-row gap-8 items-center ">
                     <div className="flex flex-col md:flex-row w-full">
                         <CardHeader className="w-full md:w-1/2 h-auto">
-                            {product.imageURL  && <img src={product.imageURL} alt="image" className="w-full h-auto object-cover" />}
+                            {product.imageURL  && <Image src={product.imageURL} alt="image" className="w-full h-auto object-cover" />}
                         </CardHeader>
                         <div className="flex flex-col md:w-1/2 mt-10">
                             <CardTitle className='px-4 md:px-10 py-6 flex flex-col justify-center'>

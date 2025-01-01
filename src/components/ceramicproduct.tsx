@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from "next/link"
 import { CardHeader , CardFooter,CardTitle  ,Card, CardDescription } from "./ui/card"
 import { GetproductData} from "@/sanity/sanity.query";
-
+import Image from 'next/image'
 
 export function CeramicProducts(){
     interface  ceramicProducts{
@@ -43,7 +43,7 @@ export function CeramicProducts(){
                 >
                 <Card key={Data[0]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
-                    {Data[0].imageURL && <img src={Data[0].imageURL} alt="image" />}
+                    {Data[0].imageURL && <Image src={Data[0].imageURL} alt="image" />}
                   </CardHeader>
                   <CardTitle><p className="ml-6">{Data[0].name}</p></CardTitle>
                   <CardDescription className='hidden'>{Data[0].description}</CardDescription>

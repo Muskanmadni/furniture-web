@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link"
 import { GetpopularproductListData } from "@/sanity/sanity.query"
-
+import Image from 'next/image';
 export function PopularProductlist(){
 
     interface ProductData {
@@ -45,7 +45,7 @@ export function PopularProductlist(){
                 >
                 <Card key={Popularproducts[1]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify ">
                   <CardHeader className=" w-[700px]">
-                    {Popularproducts[1].imageURL && <img src={Popularproducts[1].imageURL} alt="image" />}
+                    {Popularproducts[1].imageURL && <Image src={Popularproducts[1].imageURL} alt="image" />}
                   </CardHeader>
                   <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Popularproducts[1].prduct}</p></CardTitle>
                   <CardFooter>

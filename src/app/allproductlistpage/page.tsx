@@ -3,6 +3,7 @@ import { CeramicProducts } from "@/components/ceramicproduct"
 import { Card, CardHeader, CardTitle, CardDescription} from "@/components/ui/card"
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 //this page is for productlist page whcih is when we click on view collection button for vierwing the single product details   
 
@@ -35,7 +36,7 @@ export default function ProductList() {
         <div className="flex flex-col md:flex-row w-full">
           <CardHeader className="w-full md:w-1/2 h-auto">
             {product.imageURL && (
-              <img src={product.imageURL} alt="image" className="w-full h-auto object-cover" />
+              <Image src={product.imageURL} alt="image" className="w-full h-auto object-cover" />
             )}
           </CardHeader>
           <div className="flex flex-col md:w-1/2 mt-10">
