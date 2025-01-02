@@ -33,7 +33,9 @@ export default function Header(){
                 <Link href={"Aboutpage"}>
                 <li className="navbutton">about</li>
                 </Link>
+                <Link href={'cart'}>
                 <li className="navbutton">cart</li>
+                </Link>
                 <li className="navbutton">wishlist</li>
                 <li>
                     <label htmlFor="searched" className="searchbtn " onClick={Searchbar}>
