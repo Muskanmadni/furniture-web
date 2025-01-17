@@ -28,12 +28,12 @@ export function CeramicProducts(){
       return(
           <>
         <section>
-          <div className="px-4 md:px-8 py-12 text-[#2A254B] mt-12">
+          <div className="px-4 md:px-8 py-12 text-[#2A254B] mt-12 ">
             {/* Title */}
             <h1 className="text-2xl font-semibold">New Ceramics</h1>
   
             {/* Product Items */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+            <div className="lg:grid md:grid-cols-4 gap-8 mt-12  ">
               {Array.isArray(Data) && Data.length > 0 && Data[0] && (
                 <Link 
                 href={{
@@ -81,7 +81,7 @@ export function CeramicProducts(){
                 }}
                 >
                 
-                <Card key={Data[2]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
+                <Card key={Data[2]._id} className="lg:h-[200px] lg:w-[200px] xl:h-[200px] xl:w-[200px] mb-[200px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
                     {Data[1].imageURL && <Image width={300} height={600} src={Data[2].imageURL} alt="image"></Image>}
                   </CardHeader>

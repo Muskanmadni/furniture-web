@@ -8,70 +8,85 @@ import React, { useState } from 'react';
 import { MenuIcon, ShoppingCart, UserCircle,} from "lucide-react";
 
 
-export default function Header(){
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const [isSearchOpen, SetIsSearchOpen] = useState(false);
-  const Searchbar = ()=> {
-    SetIsSearchOpen(!isSearchOpen);
-  };
-    return(
-        <nav className="bg-white w-full h-20 navbar">
-            <input type="checkbox" id="check"/>
-            <label htmlFor="check" className="checkbtn" onClick={toggleMenu}>
-                <MenuIcon className="text-black "/>
-            </label>
-            <label className="logo">Avion</label>
-            <ul className={`buttons justify-center  ${isMenuOpen ? 'show' : ''}`}>
-                <Link href={"/"}>
-                <li className="navbutton">home</li>
-                </Link>
-                
-                <Link href={"Aboutpage"}>
-                <li className="navbutton">about</li>
-                </Link>
-                <Link href={'cart'}>
-                <li className="navbutton">cart</li>
-                </Link>
-                <li className="navbutton">wishlist</li>
-                <li>
-                    <label htmlFor="searched" className="searchbtn " onClick={Searchbar}>
-                        <SearchOutlined/>
-                    </label> 
-                </li>
-                <Link href={"cart"}>
-                <li>
-                    <label htmlFor="searched" className="searchbtn  " onClick={Searchbar}>
-                        <ShoppingCart/>
-                    </label>
-                </li>
-                </Link>
-                <li>
-                    <label htmlFor="searched" className="searchbtn " onClick={Searchbar}>
-                        <UserCircle/>
-                    </label>
-                </li>
-            </ul>
-        </nav>
-    )
-};
-export function Header2(){
-    return(
-        <nav className="bg-gray-50 w-full h-14">
-            <ul className="w-full h-16 flex items-center justify-center gap-10 text-gray-400 header2 "> 
-                <li>All products</li>
-                <li>Plant Pot</li>
-                <li>Ceramics</li>
-                <li>Tables</li>
-                <li>Chairs</li>
-                <li>Crockery</li>
-                <li>Tableware</li>
-                <li>Cutlery</li>
-            </ul>
 
-        </nav>
-    )
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
+  return (
+    <nav className="bg-white w-full h-20"> 
+      <input type="checkbox" id="check" />
+      <label htmlFor="check" className="block md:hidden" onClick={toggleMenu}>
+        <MenuIcon className="text-black float-right mt-6" />
+      </label>
+      <Link href={"/"}>
+      <div className="flex justify-between items-center"> 
+        <h1 className="text-2xl font-bold pl-10 pt-20 absolute">Avion</h1> 
+      </div>
+      </Link>
+      <div>
+      <ul 
+          className={`md:flex justify-end pt-7 pr-4 text-[20px] items-center gap-4  ${isMenuOpen ? 'flex flex-col absolute top-20 justify-center text-center w-[100%] h-[450px]  bg-slate-950 text-white transition-all ease-in-out duration-300  ' : 'hidden'}`} // Corrected line
+        > 
+          <Link href="/">
+            <li className="hover:text-blue-500">home</li>
+          </Link>
+          <Link href="/Aboutpage">
+            <li className="hover:text-blue-500">about</li>
+          </Link>
+          <Link href="/cart">
+            <li className="hover:text-blue-500">cart</li>
+          </Link>
+          <li className="hover:text-blue-500">wishlist</li>
+          <li onClick={toggleSearch}>
+            <SearchOutlined className="hover:text-blue-500" />
+          </li>
+          <Link href="/cart">
+            <li>
+              <ShoppingCart className="hover:text-blue-500" />
+            </li>
+          </Link>
+          <li>
+            <UserCircle className="hover:text-blue-500" />
+          </li>
+        </ul>
+      </div>
+
+      {/* Optional: Search Bar (Conditional Rendering) */}
+      {isSearchOpen && (
+        <div className="fixed top-0 left-0 w-full h-screen bg-gray-100 z-50 flex items-center justify-center">
+          <input
+            type="text"
+            className="border border-gray-300 rounded-md px-4 py-2"
+            placeholder="Search..."
+          />
+        </div>
+      )}
+    </nav>
+  );
 }
+export function Header2() {
+    return (
+      <nav className="bg-gray-50 w-full h-14 hidden lg:block xl:block"> 
+        <ul className="w-full h-16  flex gap-8 text-center  items-center justify-center  text-gray-400"> 
+          <li>All products</li> 
+          <li>Plant Pot</li>
+          <li>Ceramics</li>
+          <li>Tables</li>
+          <li>Chairs</li>
+          <li>Crockery</li>
+          <li>Tableware</li>
+          <li>Cutlery</li>
+        </ul>
+      </nav>
+    );
+  }

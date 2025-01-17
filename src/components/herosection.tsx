@@ -6,10 +6,10 @@ import Link from "next/link";
 export function HeroSection(){
     return(
         <div className=" bg-white flex-none order-1 flex-grow-0 lg:pl-[100px] xl:ml-[300px]">
-            <div className="bg-[#2A254B] lg:w-[800px] lg:h-[400px]  sm:text-center lg:text-center md:w-[680px] md:h-[350px]"> 
-                <h2 className="text-white  lg:text-[30px] sm:text-[30px] md:text-[20px] xl:text-[20px] xl:text-left xl:pt-[20px] xl:pl-[20px] ">The furniture brand for the <br/>future, with timeless designs</h2>
+            <div className="bg-[#2A254B] lg:w-[800px] lg:h-[400px]  sm:text-center lg:text-center md:w-[680px] md:h-[350px] "> 
+                <h2 className="text-white  lg:text-[30px] sm:text-[30px] md:text-[20px] pl-12  xl:text-[20px] xl:text-left xl:pt-[20px] xl:pl-[20px] ">The furniture brand for the <br/>future, with timeless designs</h2>
                 <Link href={"productlist"}>
-                <Button variant="destructive" className="lg:self-end lg:mb-4 bg-[#494465] text-[#8e8a9f] mt-[50px] ml-[50px] xl:mt-[50px] xl:ml-[50px] xl:justify-start xl:flex md:justify-center">
+                <Button variant="destructive" className="lg:self-end lg:mb-4 bg-[#494465] text-[#8e8a9f] mt-[70px] ml-[100px] xl:mt-[50px] xl:ml-[50px] xl:justify-start xl:flex md:justify-center ">
                     View Products
                 </Button>
                 </Link>

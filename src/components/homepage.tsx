@@ -64,8 +64,8 @@ export function BrandDetails(){
 // news letter section
 export function Newsletter(){
     return(
-        <div className=" newsletter-section bg- bg-gray-200 mt-96">
-            <div className="newsletterText mt-16">
+        <div className="lg:w-[100%] xl:w-[100%] bg- bg-gray-200 lg:mt-[200px] lg:h-[500px] flex lg:justify-center lg:text-center xl:justify-center xl:text-center justify-center text-center w-[]">
+            <div className="bg-red-500 w-[1300px] h-[400px] lg:w-[900px] lg:h-[400px] lg:mt-[50px] xl:w-[1500px]">
                 <h2 className="text-black newsheading text-center pt-28 font-light text-4xl">Join the club and get the benefits</h2>
                 <p className="text-black text-center mt-12 text-sm">Sign up for our newsletter and receive exclusive offers on new<br/> ranges, sales, pop up stores and more</p>
                 <div className="flex w-full max-w-sm items-center space-x-2 signupSection bg-gray-500">
