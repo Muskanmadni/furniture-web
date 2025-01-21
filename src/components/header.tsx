@@ -16,11 +16,11 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // const [isSearchOpen, setIsSearchOpen] = useState(false);
   // const [searchQuery, setSearchQuery] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
+  // const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // const toggleMenu = () => {
+  //   setIsMenuOpen(!isMenuOpen);
+  // };
 
   // const toggleSearch = () => {
   //   setIsSearchOpen(!isSearchOpen);
