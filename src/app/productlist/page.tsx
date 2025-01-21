@@ -1,12 +1,12 @@
 "use client";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 import Image from 'next/image'
 import { Card, CardDescription, CardHeader , CardTitle } from "@/components/ui/card";
 
 
-import { PopularProductlist } from '@/components/popularproducts';
+
 import { Suspense } from 'react';
 
 
@@ -14,12 +14,13 @@ import { Suspense } from 'react';
   
 
 
-interface product {
+interface Product {
     _id: string;
     imageURL: string;
     name:string
     price: number;
     description:string;
+    quantity: number;
 }
 
 export default function ProductList() {
@@ -32,8 +33,10 @@ export default function ProductList() {
 
 function ProductContent() {
   const searchParams = useSearchParams()
-  const [product, setProduct] = useState<product | null>(null)
+  const [quantity, setQuantity] = useState<number>(1);
+  const [product, setProduct] = useState<Product | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const router = useRouter();
 
   useEffect(() => {
       try {
@@ -47,6 +50,35 @@ function ProductContent() {
           console.error('Error parsing product:', err)
       }
   }, [searchParams])
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Math.max(1, Number(e.target.value)); // Ensure quantity is at least 1
+    setQuantity(value);
+  };
+
+  const handleAddToCart = () => {
+    if (product) {
+      const cart = localStorage.getItem("cart") || "[]";
+      const cartItems: Product[] = JSON.parse(cart);
+
+      // Check if the product already exists in the cart
+      const existingItemIndex = cartItems.findIndex((item) => item._id === product._id);
+
+      if (existingItemIndex > -1) {
+        // If product exists, update the quantity
+        cartItems[existingItemIndex]._id += quantity;
+      } else {
+        // Otherwise, add the new product to the cart with the selected quantity
+        cartItems.push({ ...product, quantity });
+      }
+
+      // Save the updated cart to localStorage
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+
+      // Navigate to the Cart page
+      router.push("/cart");
+    }
+  };
+
 
   if (error) return <div className="text-red-500 p-4">{error}</div>
   if (!product) return <div className="p-4">Loading product details...</div>
@@ -68,8 +100,14 @@ function ProductContent() {
                              <CardDescription className="text-[#505977] text-sm md:text-base ml-10">
                                  <h1 className="font-semibold">Description</h1>
                                  <p className="my-4 md:my-6 ">{product.description}</p>
+                                 <div className="flex items-center ml-10">
+                                    <label htmlFor="quantity" className="mr-4 text-lg font-medium">
+                                        Quantity:
+                                    </label>
+                                    <input id="quantity"type="number"value={quantity}onChange={handleQuantityChange}className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-gray-500"min={1}/>
+                                 </div>
                              </CardDescription>
-                             <button  className="w-full md:w-[146px] h-[56px] bg-[#2A254B] text-white mt-4 md:mt-0 ml-10">
+                             <button onClick={handleAddToCart} className="w-full md:w-[146px] h-[56px] bg-[#2A254B] text-white mt-4 md:mt-0 ml-10">
                                Add to cart
                              </button>
                          </div>

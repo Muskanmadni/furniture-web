@@ -7,9 +7,9 @@ import Image from 'next/image'
 import { Card, CardDescription, CardHeader , CardTitle } from "@/components/ui/card";
 
 
-import { PopularProductlist } from '@/components/popularproducts';
+
 import { Suspense } from 'react';
-import { route } from 'sanity/router';
+
 
 
 

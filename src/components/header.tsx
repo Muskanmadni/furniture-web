@@ -6,14 +6,13 @@ import Link from "next/link";
 import { SearchOutlined, } from "@ant-design/icons";
 import React, { useState } from 'react';
 import { MenuIcon, ShoppingCart, UserCircle, } from "lucide-react";
-import { ProductData } from "../sanity/sanity.query";
-import { product } from "@/sanity/schemaTypes/products";
 
 
 
 
-export default function Header({}: { products : any}) {
-// export default function Header() {
+
+// export default function Header({}: { products : any}) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,23 +22,23 @@ export default function Header({}: { products : any}) {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-  };
+  // const toggleSearch = () => {
+  //   setIsSearchOpen(!isSearchOpen);
+  // };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const query = e.target.value.toLowerCase();
+  //   setSearchQuery(query);
 
-    if (query) {
-      const filtered =((product: any) =>
-        product.name.toLowerCase().includes(query)
-      );
-      setFilteredProducts(filtered);
-    } else {
-      setFilteredProducts([]);
-    }
-  };
+  //   if (query) {
+  //     const filtered =((product: any) =>
+  //       product.name.toLowerCase().includes(query)
+  //     );
+  //     setFilteredProducts(filtered);
+  //   } else {
+  //     setFilteredProducts([]);
+  //   }
+  // };
 
 return (
   <nav className="bg-white w-full h-20">
@@ -66,7 +65,7 @@ return (
           <li className="hover:text-blue-500">cart</li>
         </Link>
         <li className="hover:text-blue-500">wishlist</li>
-        <li onClick={toggleSearch}>
+        <li>
           <SearchOutlined className="hover:text-blue-500" />
         </li>
         <Link href="/cart">
@@ -87,8 +86,8 @@ return (
           type="text"
           className="border border-gray-300 rounded-md px-4 py-2"
           placeholder="Search..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          
+         
         />
       </div>
     )}
