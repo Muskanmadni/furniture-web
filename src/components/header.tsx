@@ -14,8 +14,8 @@ import { MenuIcon, ShoppingCart, UserCircle, } from "lucide-react";
 // export default function Header({}: { products : any}) {
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
 
   const toggleMenu = () => {
@@ -80,7 +80,7 @@ return (
     </div>
 
     {/* Optional: Search Bar (Conditional Rendering) */}
-    {isSearchOpen && (
+    {/* {isSearchOpen && (
       <div className="fixed top-0 left-0 w-full h-screen bg-gray-100 z-50 flex items-center justify-center">
         <input
           type="text"
@@ -90,7 +90,7 @@ return (
          
         />
       </div>
-    )}
+    )} */}
   </nav>
 );
 }
