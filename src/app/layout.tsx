@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header, { Header2 } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { product } from "@/sanity/schemaTypes/products";
 
 
 const geistSans = localFont({

@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image'
 import { Card, CardDescription, CardHeader , CardTitle } from "@/components/ui/card";
 
-import { CeramicProducts } from '@/components/ceramicproduct';
+
+import { PopularProductlist } from '@/components/popularproducts';
 import { Suspense } from 'react';
 
 
@@ -13,12 +14,12 @@ import { Suspense } from 'react';
   
 
 
-interface Product {
-  imageURL: string
-  prduct: string
-  price: string
-  description: string
-  _id: string
+interface product {
+    _id: string;
+    imageURL: string;
+    name:string
+    price: number;
+    description:string;
 }
 
 export default function ProductList() {
@@ -31,7 +32,7 @@ export default function ProductList() {
 
 function ProductContent() {
   const searchParams = useSearchParams()
-  const [product, setProduct] = useState<Product | null>(null)
+  const [product, setProduct] = useState<product | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -61,7 +62,7 @@ function ProductContent() {
                          </CardHeader>
                          <div className="flex flex-col md:w-1/2 mt-10">
                              <CardTitle className='px-4 md:px-10 py-6 flex flex-col justify-center'>
-                                 <p className="text-xl md:text-2xl font-semibold">{product.prduct}</p>
+                                 <p className="text-xl md:text-2xl font-semibold">{product.name}</p>
                                  <p className="py-2 text-lg md:text-xl">{product.price}</p>
                              </CardTitle>
                              <CardDescription className="text-[#505977] text-sm md:text-base ml-10">
@@ -73,8 +74,6 @@ function ProductContent() {
                              </button>
                          </div>
                      </div>
-
-                     <CeramicProducts/>
                  </Card>
                 
          </section>

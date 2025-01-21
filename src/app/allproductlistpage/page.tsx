@@ -9,11 +9,11 @@ import { Suspense } from "react"
 
 
 interface Product {
-  _id: string
-  imageURL: string
-  listproduct: string
-  listproductprice: number
-  listproductdescription: string
+  _id: string;
+  imageURL: string;
+  name:string
+  price: number;
+  description:string;
 }
 
 export default function AllProductListPage() {
@@ -55,12 +55,12 @@ function ProductContent() {
           </CardHeader>
           <div className="flex flex-col md:w-1/2 mt-10">
             <CardTitle className='px-4 md:px-10 py-6 flex flex-col justify-center'>
-              <p className="text-xl md:text-2xl font-semibold">{product.listproduct}</p>
-              <p className="py-2 text-lg md:text-xl">${product.listproductprice}</p>
+              <p className="text-xl md:text-2xl font-semibold">{product.name}</p>
+              <p className="py-2 text-lg md:text-xl">${product.price}</p>
             </CardTitle>
             <CardDescription className="text-[#505977] text-sm md:text-base ml-10">
                 <h1 className="font-semibold">Description</h1>
-                <p className="my-4 md:my-6">{product.listproductdescription}</p>
+                <p className="my-4 md:my-6">{product.description}</p>
             </CardDescription>
             <button  className="w-full md:w-[146px] h-[56px] bg-[#2A254B] text-white mt-4 md:mt-0 ml-10">
                 Add to cart

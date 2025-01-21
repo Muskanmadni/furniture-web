@@ -1,40 +1,51 @@
-import { groq } from "next-sanity";
-import sanityClient from "./sanity.client";
+import { groq} from "next-sanity";
 
-export async function GetproductData() {
-    return sanityClient.fetch(
+import { client } from "../../sanityClient";
+
+
+
+// export async function GetproductListData() {
+//     return sanityClient.fetch(
+//         groq`
+//         *[_type=="ListData"]{
+//         listproduct,
+//         listproductdescription,
+//         listproductprice,
+//         "imageURL": listproductimage.asset->url
+//         }
+//         `
+//     )
+// }
+// export async function GetpopularproductListData() {
+//     return sanityClient.fetch(
+//         groq`
+//         *[_type=="popularproductList"]{
+//         prduct,
+//         description,
+//         price,
+//         "imageURL": image.asset->url
+//         }
+//         `
+//     )
+// }
+export async function ProductData(){
+    return client.fetch (
         groq`
-        *[_type=="productData"]{
+        *[_type== "product"]{
+        category,    
         name,
-        description,
+        slug,
         price,
-        "imageURL": image.asset->url
-        }
-        `
-    )
-}
-export async function GetproductListData() {
-    return sanityClient.fetch(
-        groq`
-        *[_type=="ListData"]{
-        listproduct,
-        listproductdescription,
-        listproductprice,
-        "imageURL": listproductimage.asset->url
-        }
-        `
-    )
-}
-export async function GetpopularproductListData() {
-    return sanityClient.fetch(
-        groq`
-        *[_type=="popularproductList"]{
-        prduct,
+        quantity,
+        tags,
         description,
-        price,
-        "imageURL": image.asset->url
+        features,
+        dimensions,
+        "imageURL":image.asset->url
         }
         `
+
     )
 }
+
 

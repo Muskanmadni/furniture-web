@@ -6,15 +6,15 @@ import Link from "next/link"
 import headerImage from "@/images/products/productlistingpageHeader.jpg"
 import { CaretDownOutlined } from "@ant-design/icons";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { GetproductListData} from "@/sanity/sanity.query";
+import { ProductData} from "@/sanity/sanity.query";
 
-interface Product {
+interface ProductData {
     _id: string;
     imageURL: string;
-    listproduct: string;
-    listproductdescription: string;
-    listproductprice: number;
-  }
+    name:string
+    price: number;
+    description:string;
+}
 
 export default  function ProductList(){
     
@@ -22,7 +22,7 @@ export default  function ProductList(){
 
     useEffect(() => {
         async function fetchData() {
-            const data = await GetproductListData();
+            const data = await ProductData();
             setProducts(data);
         }
         fetchData();
@@ -62,8 +62,8 @@ export default  function ProductList(){
                     </tbody>
                 </table>
             </div>
-            <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ml-20 text-justify">
-                {Array.isArray(products) &&  products.map((product: Product)  => (
+            <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:ml-0 text-justify">
+                {Array.isArray(products) &&  products.map((product:ProductData)  => (
                     <Link 
                     key={product._id}
                     href={{
@@ -71,19 +71,19 @@ export default  function ProductList(){
                       query: { product: JSON.stringify(product) }
                     }}
                     >
-                    <Card key={product._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
+                    <Card key={product._id} className="h-[200px] w-[200px] xl:mb-[200px] md:mb-[200px] lg:mb-[200px] mb-[300px] border-none text-justify">
                         
-                        <CardHeader className=" w-[250px]">
-                            {product.imageURL && <Image width={305} height={375} src={product.imageURL} alt="image" ></Image>}
+                        <CardHeader className=" xl:w-[300px] lg:w-[250px] md:w-[250px] w-[300px]">
+                            {product.imageURL && <Image width={305} height={375} src={product.imageURL} alt="image" className='xl:h-[300px] lg:h-[200px] md:h-[200px]' ></Image>}
     
                         </CardHeader>
 
-                        <CardTitle><p className="ml-6">{product.listproduct}</p></CardTitle>
-                        <CardDescription className='my-4 md:my-6 hidden'>{product.listproductdescription}</CardDescription>
+                        <CardTitle><p className="ml-6  whitespace-nowrap  text-ellipsis">{product.name}</p></CardTitle>
+                        <CardDescription className='my-4 md:my-6 hidden'>{product.description}</CardDescription>
                         <CardFooter>
                             
                             
-                            <p>${product.listproductprice}</p>
+                            <p>${product.price}</p>
                         </CardFooter>
                     </Card>
                     </Link>
