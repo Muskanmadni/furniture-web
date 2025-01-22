@@ -34,13 +34,13 @@ const Cart = () => {
     address: "",
   });
 
-  const handleInputChange =(e:any) =>{
-    console.log(e)
-    const {name,value} = e.target;
-    setCustomerInfo({...customerInfo,[name]:value})
+  // const handleInputChange =(e:any) =>{
+  //   console.log(e)
+  //   const {name,value} = e.target;
+  //   setCustomerInfo({...customerInfo,[name]:value})
 
 
-  }
+  // }
 
   
 
@@ -123,7 +123,7 @@ const Cart = () => {
           <input 
             type="text"
             name="name"
-            onChange={handleInputChange}
+            // onChange={handleInputChange}
             className="w-full h-10 text-black"
             value={customerInfo.name}
           />
@@ -134,7 +134,7 @@ const Cart = () => {
           <input
             type="text"
             name="phone"
-            onChange={handleInputChange}
+            // onChange={handleInputChange}
             className="w-full h-10"
             value={customerInfo.phone}
           />
@@ -146,7 +146,7 @@ const Cart = () => {
             type="email"
             name="email"
             value={customerInfo.email}
-            onChange={handleInputChange}
+            // onChange={handleInputChange}
             className="w-full h-10"
 
 
@@ -158,7 +158,7 @@ const Cart = () => {
             type="text"
             name="address"
             value={customerInfo.address}
-            onChange={handleInputChange}
+            // onChange={handleInputChange}
             className="w-full h-10"
           />
         </div>

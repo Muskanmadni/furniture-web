@@ -83,7 +83,7 @@ function ProductContent() {
     }
   };
 
-  const handleQuantityChange = (e:any) => {
+  const handleQuantityChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(0, Number(e.target.value)); // Ensure quantity is at least 1
     setQuantity(value);
   };
