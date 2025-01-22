@@ -21,6 +21,8 @@ interface Product {
     price: number;
     description:string;
     quantity: number;
+
+    features:string
 }
 
 export default function ProductList() {
@@ -100,12 +102,16 @@ function ProductContent() {
                              <CardDescription className="text-[#505977] text-sm md:text-base ml-10">
                                  <h1 className="font-semibold">Description</h1>
                                  <p className="my-4 md:my-6 ">{product.description}</p>
+
                                  <div className="flex items-center ml-10">
                                     <label htmlFor="quantity" className="mr-4 text-lg font-medium">
                                         Quantity:
                                     </label>
                                     <input id="quantity"type="number"value={quantity}onChange={handleQuantityChange}className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-gray-500"min={1}/>
                                  </div>
+                             </CardDescription>
+                             <CardDescription className="text-[#505977] text-sm md:text-base ml-10 gap-[200px] mb-">Features: {product.features}
+                                
                              </CardDescription>
                              <button onClick={handleAddToCart} className="w-full md:w-[146px] h-[56px] bg-[#2A254B] text-white mt-4 md:mt-0 ml-10">
                                Add to cart

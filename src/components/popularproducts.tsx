@@ -67,7 +67,7 @@ export function PopularProductlist(){
                   query: { product: JSON.stringify(Popularproducts[2]) }
                 }}
                 >
-                <Card key={Popularproducts[2]._id} className="h-[200px] w-[200px] mb-[200px] lg:mb-[150px] sm:mb-[300px] border-none text-justify lg:ml-[0px]  xl:ml-[200px]  ">
+                <Card key={Popularproducts[2]._id} className="h-[200px] w-[200px]  lg:mb-[150px] sm:mb-[300px] border-none text-justify lg:ml-[0px]  xl:ml-[200px]  ">
                   <CardHeader className=" lg:w-[700px] xl:w-[700px] md:w-[300px] w-[250px] sm:w-[300px] ">
                     {Popularproducts[2].imageURL && <Image width={400} height={300} src={Popularproducts[2].imageURL} alt="image" ></Image>}
                   </CardHeader>

@@ -14,31 +14,12 @@ import { MenuIcon, ShoppingCart, UserCircle, } from "lucide-react";
 // export default function Header({}: { products : any}) {
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const [isSearchOpen, setIsSearchOpen] = useState(false);
-  // const [searchQuery, setSearchQuery] = useState("");
-  // const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // const toggleSearch = () => {
-  //   setIsSearchOpen(!isSearchOpen);
-  // };
-
-  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const query = e.target.value.toLowerCase();
-  //   setSearchQuery(query);
-
-  //   if (query) {
-  //     const filtered =((product: any) =>
-  //       product.name.toLowerCase().includes(query)
-  //     );
-  //     setFilteredProducts(filtered);
-  //   } else {
-  //     setFilteredProducts([]);
-  //   }
-  // };
+ 
 
 return (
   <nav className="bg-white w-full h-20">
@@ -62,7 +43,9 @@ return (
           <li className="hover:text-blue-500">about</li>
         </Link>
         <Link href="/cart">
-          <li className="hover:text-blue-500">cart</li>
+
+          <li className="hover:text-blue-500">cart
+          </li>
         </Link>
         <li className="hover:text-blue-500">wishlist</li>
         <li>
@@ -79,18 +62,7 @@ return (
       </ul>
     </div>
 
-    {/* Optional: Search Bar (Conditional Rendering) */}
-    {/* {isSearchOpen && (
-      <div className="fixed top-0 left-0 w-full h-screen bg-gray-100 z-50 flex items-center justify-center">
-        <input
-          type="text"
-          className="border border-gray-300 rounded-md px-4 py-2"
-          placeholder="Search..."
-          
-         
-        />
-      </div>
-    )} */}
+    
   </nav>
 );
 }

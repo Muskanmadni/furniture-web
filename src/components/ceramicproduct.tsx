@@ -41,7 +41,7 @@ export function CeramicProducts(){
                   query: { product: JSON.stringify(Data[10]) }
                 }}
                 >
-                <Card key={Data[10]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
+                <Card key={Data[10]._id} className="h-[200px] w-[200px] mb-[100px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
                     {Data[10].imageURL && <Image width={300} height={600} src={Data[10].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
                   </CardHeader>
@@ -81,7 +81,7 @@ export function CeramicProducts(){
                 }}
                 >
                 
-                <Card key={Data[13]._id} className="lg:h-[200px] lg:w-[200px] xl:h-[200px] xl:w-[200px] mb-[200px] border-none text-justify">
+                <Card key={Data[13]._id} className="lg:h-[200px] lg:w-[200px] xl:h-[200px] xl:w-[200px]  border-none text-justify">
                   <CardHeader className=" w-[250px]">
                     {Data[13].imageURL && <Image width={300} height={600} src={Data[13].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
                   </CardHeader>

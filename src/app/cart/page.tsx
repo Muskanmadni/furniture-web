@@ -10,6 +10,8 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 
 
+
+
 interface Product {
   _id: string;
   imageURL: string;
@@ -22,7 +24,25 @@ interface Product {
 const Cart = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [showForm, setShowForm] = useState(false);
   const router = useRouter();
+  
+  const [customerInfo , setCustomerInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+
+  const handleInputChange =(e:any) =>{
+    console.log(e)
+    const {name,value} = e.target;
+    setCustomerInfo({...customerInfo,[name]:value})
+
+
+  }
+
+  
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
@@ -57,6 +77,12 @@ const Cart = () => {
     calculateTotalPrice(updatedCart);
   };
 
+  const handleCheckout = () => {
+    
+    
+
+  }
+
   return (
     <div className="bg-gray-200 w-full px-4 sm:px-10 lg:px-40 pt-10 pb-16 h-auto text-custom-purple">
       <h1 className="text-2xl sm:text-3xl text-center lg:text-left">Your Shopping Cart</h1>
@@ -88,33 +114,67 @@ const Cart = () => {
         <h2 className="text-xl font-bold mt-4">Total Amount: £{totalPrice}</h2>
       )}
       <div>
+        <button onClick={() => setShowForm(true)} className="bg-[#2A254B] text-white py-2 px-12 mt-4">CheckOut</button>
+        {showForm &&
+        <div className="text-center text-black h-[550px]">
         <h2 className="text-xl font-bold mt-4">Customer Information</h2>
         <div className="mb-8 mt-10">
           <label>Name</label>
-          <input type="text"name="name" value="" className="w-full h-10"/>
-          
+          <input 
+            type="text"
+            name="name"
+            onChange={handleInputChange}
+            className="w-full h-10 text-black"
+            value={customerInfo.name}
+          />
         </div>
-        <div className="mb-8">
-          <label>Name</label>
-          <input type="text"name="name" value="" className="w-full h-10"/>
-          
-        </div>
+        
         <div className="mb-8">
           <label>Contact</label>
-          <input type="text"name="name" value="" className="w-full h-10"/>
-          
+          <input
+            type="text"
+            name="phone"
+            onChange={handleInputChange}
+            className="w-full h-10"
+            value={customerInfo.phone}
+          />
         </div>
+        
         <div className="mb-8">
           <label>Email</label>
-          <input type="text"name="name" value="" className="w-full h-10"/>
-          
+          <input 
+            type="email"
+            name="email"
+            value={customerInfo.email}
+            onChange={handleInputChange}
+            className="w-full h-10"
+
+
+          />
         </div>
-        <div className="mb-8">
+        <div>
           <label>Address</label>
-          <input type="text"name="name" value="" className="w-full h-10"/>
+          <input 
+            type="text"
+            name="address"
+            value={customerInfo.address}
+            onChange={handleInputChange}
+            className="w-full h-10"
+          />
+        </div>
+        <div>
+          <button 
+            onClick={handleCheckout}
+            className="bg-[#2A254B] text-white py-2 px-12 mt-4"
+          >
+            Place Order
+          </button>
         </div>
       </div>
+      } 
+      </div>
     </div>
+    
   );
 }
 export default Cart;
