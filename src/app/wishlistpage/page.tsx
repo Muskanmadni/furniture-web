@@ -1,8 +1,8 @@
 "use client"
-import { ProductData } from "@/sanity/sanity.query";
-import { product } from "@/sanity/schemaTypes/products";
+;
 import { useState , useEffect } from "react";
-import { getItemKey } from "sanity";
+import Image from "next/image";
+
 interface Product {
     _id: string;
     imageURL: string;
@@ -43,7 +43,7 @@ export default function Wishlist(){
 
             <div className="items-center grid grid-cols-1 lg:grid-cols-2 gap-8 pt-10">
               <div className="">
-                <img src={item.imageURL} alt={item.name} className="w-20 h-20 sm:w-28 sm:h-28" />
+                <Image src={item.imageURL} alt={item.name} width={200} height={200} className="w-20 h-20 sm:w-28 sm:h-28"></Image>
                 <p className="font-semibold">{item.name}</p>
                 <p>{item.price}</p>
               </div>

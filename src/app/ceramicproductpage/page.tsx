@@ -39,7 +39,7 @@ export default function ProductList() {
 function ProductContent() {
   const searchParams = useSearchParams()
   const [quantity, setQuantity] = useState<number>(1);
-  const [wishlistItems, setwishlist] = useState<Product | null>(null)
+
   const [product, setProduct] = useState<Product | null>(null)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter();
@@ -83,7 +83,7 @@ function ProductContent() {
     }
   };
 
-  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleQuantityChange = (e:any) => {
     const value = Math.max(0, Number(e.target.value)); // Ensure quantity is at least 1
     setQuantity(value);
   };
