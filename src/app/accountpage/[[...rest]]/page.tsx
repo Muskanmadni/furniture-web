@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { SignIn } from '@clerk/nextjs';
-import { ClerkProvider } from '@clerk/nextjs';
+
 
 export default function Page() {
   const page ="https://open-cow-26.accounts.dev/user"
