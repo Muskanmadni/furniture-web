@@ -25,4 +25,16 @@ export async function ProductData(){
     )
 }
 
+export async function CategoryData(){
+    return client.fetch (
+        groq`
+        *[_type== "category"]{
+        name,
+        slug
+        }
+        `
+
+    )
+}
+
 

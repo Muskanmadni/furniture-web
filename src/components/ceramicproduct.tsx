@@ -34,40 +34,40 @@ export function CeramicProducts(){
   
             {/* Product Items */}
             <div className="lg:grid md:grid-cols-4 gap-8 mt-12  ">
-              {Array.isArray(Data) && Data.length > 0 && Data[10] && (
+              {Array.isArray(Data) && Data.length > 0 && Data[16] && (
                 <Link 
                 href={{
                   pathname: '/ceramicproductpage',
-                  query: { product: JSON.stringify(Data[10]) }
+                  query: { product: JSON.stringify(Data[16]) }
                 }}
                 >
-                <Card key={Data[10]._id} className="h-[200px] w-[200px] mb-[100px] border-none text-justify">
+                <Card key={Data[16]._id} className="h-[200px] w-[200px] mb-[100px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
-                    {Data[10].imageURL && <Image width={300} height={600} src={Data[10].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
+                    {Data[16].imageURL && <Image width={300} height={600} src={Data[16].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
                   </CardHeader>
-                  <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Data[10].name}</p></CardTitle>
-                  <CardDescription className='hidden'>{Data[10].description}</CardDescription>
+                  <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Data[16].name}</p></CardTitle>
+                  <CardDescription className='hidden'>{Data[16].description}</CardDescription>
                   <CardFooter>
-                    <p>${Data[10].price}</p>
+                    <p>${Data[16].price}</p>
                   </CardFooter>
                 </Card>
                 </Link>           
               )}
-              {Array.isArray(Data) && Data.length > 0 && Data[23] && (
+              {Array.isArray(Data) && Data.length > 0 && Data[5] && (
                 <Link 
                 href={{
                   pathname: '/ceramicproductpage',
-                  query: { product: JSON.stringify(Data[23]) }
+                  query: { product: JSON.stringify(Data[5]) }
                 }}
                 >
-                <Card key={Data[23]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
+                <Card key={Data[5]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
                   <CardHeader className=" w-[250px]">
-                    {Data[23].imageURL && <Image width={300} height={600} src={Data[23].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
+                    {Data[5].imageURL && <Image width={300} height={600} src={Data[5].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
                   </CardHeader>
-                  <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Data[23].name}</p></CardTitle>
-                  <CardDescription className='hidden'>{Data[23].description}</CardDescription>
+                  <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Data[5].name}</p></CardTitle>
+                  <CardDescription className='hidden'>{Data[5].description}</CardDescription>
                   <CardFooter>
-                    <p>${Data[23].price}</p>
+                    <p>${Data[5].price}</p>
                   </CardFooter>
                 </Card>
                 </Link>           

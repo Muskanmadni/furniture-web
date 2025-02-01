@@ -121,8 +121,7 @@ function ProductContent() {
                  </Card>
                 
          </section>
-     </>
-      
+     </>  
   )
 }
 

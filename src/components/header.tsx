@@ -56,9 +56,11 @@ return (
             <ShoppingCart className="hover:text-blue-500" />
           </li>
         </Link>
+        <Link href="/accountpage">
         <li>
           <UserCircle className="hover:text-blue-500" />
         </li>
+        </Link>
       </ul>
     </div>
 

@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Image from "next/image";
-import cartimage1 from "@/images/products/Product Image (1).png"
-import cartimage2 from "@/images/products/aboutpageImage2.png"
-import { PlusOutlined } from "@ant-design/icons";
+
+
 import { useRouter } from "next/navigation";
+import Checkout from "@/actions/Checkout";
+
 
 
 
@@ -25,24 +26,27 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [showForm, setShowForm] = useState(false);
+
+
   const router = useRouter();
-  
-  const [customerInfo , setCustomerInfo] = useState({
+
+  const [customerInfo, setCustomerInfo] = useState({
     name: "",
     email: "",
     phone: "",
     address: "",
+    payment:"",
   });
 
-  // const handleInputChange =(e:any) =>{
-  //   console.log(e)
-  //   const {name,value} = e.target;
-  //   setCustomerInfo({...customerInfo,[name]:value})
+  const handleInputChange = (e: any) => {
+    console.log(e)
+    const { name, value } = e.target;
+    setCustomerInfo({ ...customerInfo, [name]: value })
 
 
-  // }
+  }
 
-  
+
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
@@ -79,9 +83,11 @@ const Cart = () => {
 
   const handleCheckout = () => {
     
-    
-
+    Checkout(cartItems, customerInfo)
+    router.push("/pageorder");
   }
+
+
 
   return (
     <div className="bg-gray-200 w-full px-4 sm:px-10 lg:px-40 pt-10 pb-16 h-auto text-custom-purple">
@@ -95,7 +101,7 @@ const Cart = () => {
             <div className="items-center grid grid-cols-1 lg:grid-cols-2 gap-8 pt-10">
               <div className="">
 
-                <img src={item.imageURL} alt={item.name} className="w-20 h-20 sm:w-28 sm:h-28" />
+                <Image src={item.imageURL} alt={item.name} width={500} height={500} className="w-20 h-20 sm:w-28 sm:h-28" ></Image>
                 <p className="font-semibold">{item.name}</p>
                 <p>Price per unit: £{item.price}</p>
                 <p>Quantity: {item.quantity}</p>
@@ -116,65 +122,78 @@ const Cart = () => {
       <div>
         <button onClick={() => setShowForm(true)} className="bg-[#2A254B] text-white py-2 px-12 mt-4">CheckOut</button>
         {showForm &&
-        <div className="text-center text-black h-[550px]">
-        <h2 className="text-xl font-bold mt-4">Customer Information</h2>
-        <div className="mb-8 mt-10">
-          <label>Name</label>
-          <input 
-            type="text"
-            name="name"
-            // onChange={handleInputChange}
-            className="w-full h-10 text-black"
-            value={customerInfo.name}
-          />
-        </div>
-        
-        <div className="mb-8">
-          <label>Contact</label>
-          <input
-            type="text"
-            name="phone"
-            // onChange={handleInputChange}
-            className="w-full h-10"
-            value={customerInfo.phone}
-          />
-        </div>
-        
-        <div className="mb-8">
-          <label>Email</label>
-          <input 
-            type="email"
-            name="email"
-            value={customerInfo.email}
-            // onChange={handleInputChange}
-            className="w-full h-10"
+          <div className="text-center text-black h-[550px] font-bold ">
+            <h2 className="text-xl font-bold mt-4">Customer Information</h2>
+            <div className="mb-8 mt-10">
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                required
+                onChange={handleInputChange}
+                className="w-full h-10 text-black"
+                value={customerInfo.name}
+              />
+            </div>
+
+            <div className="mb-8">
+              <label>Contact</label>
+              <input
+                type="text"
+                name="phone"
+                required
+                onChange={handleInputChange}
+                className="w-full h-10"
+                value={customerInfo.phone}
+              />
+            </div>
+
+            <div className="mb-8">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                required
+                value={customerInfo.email}
+                onChange={handleInputChange}
+                className="w-full h-10"
 
 
-          />
-        </div>
-        <div>
-          <label>Address</label>
-          <input 
-            type="text"
-            name="address"
-            value={customerInfo.address}
-            // onChange={handleInputChange}
-            className="w-full h-10"
-          />
-        </div>
-        <div>
-          <button 
-            onClick={handleCheckout}
-            className="bg-[#2A254B] text-white py-2 px-12 mt-4"
-          >
-            Place Order
-          </button>
-        </div>
+              />
+            </div>
+            <div>
+              <label>Address</label>
+              <input
+                type="text"
+                name="address"
+                required
+                value={customerInfo.address}
+                onChange={handleInputChange}
+                className="w-full h-10"
+              />
+            </div>
+            <div className="mb-8 mt-10 flex-col flex ">
+              <label>Payment Methods</label>
+              <select className=" w-64" name="payment" required onChange={handleInputChange} value={customerInfo.payment}>
+                <option value="cash">Cash on Delivery</option>
+              </select>
+
+            </div>
+            <div>
+              <button
+                onClick={handleCheckout}
+                className="bg-[#2A254B] text-white py-2 px-12 mt-4">
+                submit Order
+              </button>
+            </div>
+
+          </div>
+        }
       </div>
-      } 
-      </div>
+      
+
     </div>
-    
+
   );
 }
 export default Cart;
