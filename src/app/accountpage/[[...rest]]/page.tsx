@@ -15,7 +15,7 @@ export default function Page() {
       <SignIn afterSignInUrl={page} />
     </ClerkProvider>
     <Link href={"/studio"}>
-    <button className='bg-[#2A254B] py-4 px-6 rounded-[5px] text-[#F9F9F9]'>Click Here if you're Admin</button></Link>
+    <button className='bg-[#2A254B] py-4 px-6 rounded-[5px] text-[#F9F9F9]'>Click Here if you are Admin</button></Link>
     </section>
   );
 }  
