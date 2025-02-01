@@ -38,7 +38,7 @@ const Cart = () => {
     payment:"",
   });
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     console.log(e)
     const { name, value } = e.target;
     setCustomerInfo({ ...customerInfo, [name]: value })
