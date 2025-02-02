@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import {SignIn}  from '@clerk/nextjs';
 
-import { ClerkProvider } from '@clerk/nextjs';
+
 
  
 export default function Page() {
@@ -10,7 +10,7 @@ export default function Page() {
 
 
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+  
       <section className="flex flex-col items-center justify-center w-full h-screen">
         <SignIn afterSignInUrl={page} />
         <Link href="/studio">
@@ -19,7 +19,7 @@ export default function Page() {
           </button>
         </Link> 
       </section>
-    </ClerkProvider>
+
   );
 }
 
