@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header, { Header2 } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 
 
@@ -26,10 +27,10 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
+
   return (
-
+    <ClerkProvider>
     <html lang="en">
-
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
         <Header/>
@@ -38,8 +39,8 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
         <Footer/>
 
       </body>
-
+      
     </html>
-
+    </ClerkProvider>
   );
 }
