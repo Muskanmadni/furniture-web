@@ -4,7 +4,7 @@ import "./globals.css";
 import Header, { Header2 } from "@/components/header";
 import { Footer } from "@/components/footer";
 
-import { Providers } from "@/components/clerk";
+
 
 
 
@@ -29,7 +29,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
   return (
 
     <html lang="en">
-      <Providers>
+
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
         <Header/>
@@ -38,7 +38,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
         <Footer/>
 
       </body>
-      </Providers>
+
     </html>
 
   );
