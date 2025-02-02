@@ -1,11 +1,4 @@
 {
-  
-
-  // Add your own ESLint configuration here
-  "rules" : {
-
-
-    "@typescript-eslint/no-require": "off"
-  }
+  "extends": ["next/core-web-vitals", "next/typescript"]
   
 }
