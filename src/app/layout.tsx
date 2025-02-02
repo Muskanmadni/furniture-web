@@ -3,7 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header, { Header2 } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { ClerkProvider } from "@clerk/nextjs";
+
+import { Providers } from "@/components/clerk";
+
 
 
 
@@ -25,18 +27,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
   return (
-    <ClerkProvider>
+
     <html lang="en">
-      
+      <Providers>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+
         <Header/>
         <Header2/>
         {children}
         <Footer/>
-        <main>{children}</main>
-      </body>
 
+      </body>
+      </Providers>
     </html>
-    </ClerkProvider>
+
   );
 }
