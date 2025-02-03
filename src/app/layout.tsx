@@ -32,7 +32,6 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
     <ClerkProvider>
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SignIn/>
         <Header/>
         <Header2/>
         {children}
