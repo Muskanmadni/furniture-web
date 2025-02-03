@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
 
   return (
-    <ClerkProvider publishableKey="pk_test_b3Blbi1jb3ctMjYuY2xlcmsuYWNjb3VudHMuZGV2JA">
+    <ClerkProvider>
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SignIn/>
