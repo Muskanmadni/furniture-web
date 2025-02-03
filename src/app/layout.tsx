@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header, { Header2 } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignIn } from "@clerk/nextjs";
 
 
 
@@ -32,7 +32,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
     <ClerkProvider publishableKey="pk_test_b3Blbi1jb3ctMjYuY2xlcmsuYWNjb3VudHMuZGV2JA">
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-
+        <SignIn/>
         <Header/>
         <Header2/>
         {children}
