@@ -7,7 +7,11 @@ import Image from "next/image";
 
 
 import { useRouter } from "next/navigation";
-import Checkout from "@/actions/Checkout";
+
+
+import { client } from "../../../sanityClient";
+
+
 
 
 
@@ -24,7 +28,7 @@ interface Product {
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [total, setTotalPrice] = useState<number>(0);
   const [showForm, setShowForm] = useState(false);
 
 
@@ -81,11 +85,31 @@ const Cart = () => {
     calculateTotalPrice(updatedCart);
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     
-    Checkout(cartItems, customerInfo)
-    router.push("/pageorder");
+    const orderData ={
+      _type : 'order',
+      name: customerInfo.name,
+      email: customerInfo.email,
+      address: customerInfo.address,
+      phone: customerInfo.phone,
+      payment: customerInfo.payment,
+      cartItems : cartItems.map(item =>({
+        _type:"reference",
+        _ref:item._id
+      })),
+      total:total,
+      orderDate: new Date().toISOString(),
+    };
+    try{
+      await client.create(orderData);
+      localStorage.removeItem("cart");
+      router.push("/pageorder");
+    }catch(error){
+      console.error("error in creating order", error)
   }
+  }
+
 
 
 
@@ -117,7 +141,7 @@ const Cart = () => {
         <p className="text-center mt-10">Your cart is empty!</p>
       )}
       {cartItems.length > 0 && (
-        <h2 className="text-xl font-bold mt-4">Total Amount: £{totalPrice}</h2>
+        <h2 className="text-xl font-bold mt-4">Total Amount: £{total}</h2>
       )}
       <div>
         <button onClick={() => setShowForm(true)} className="bg-[#2A254B] text-white py-2 px-12 mt-4">CheckOut</button>
