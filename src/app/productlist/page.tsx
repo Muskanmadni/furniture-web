@@ -1,59 +1,52 @@
-"use client";
+'use client';
+
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-import Image from 'next/image'
-import { Card, CardDescription, CardHeader , CardTitle } from "@/components/ui/card";
-
-
-
-import { Suspense } from 'react';
-
-
-
-  
-
+import { Suspense } from "react";
 
 interface Product {
-    _id: string;
-    imageURL: string;
-    name:string
-    price: number;
-    description:string;
-    quantity: number;
-
-    features:string
+  _id: string;
+  imageURL: string;
+  name: string;
+  price: number;
+  description: string;
+  quantity: number;
+  features: string;
 }
 
 export default function ProductList() {
   return (
-      <Suspense fallback={<div>Loading products...</div>}>
-          <ProductContent />
-      </Suspense>
-  )
+    <Suspense fallback={<div className="text-center py-20 text-gray-500">Loading products...</div>}>
+      <ProductContent />
+    </Suspense>
+  );
 }
 
 function ProductContent() {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const [quantity, setQuantity] = useState<number>(1);
-  const [product, setProduct] = useState<Product | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [product, setProduct] = useState<Product | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-      try {
-          const productParam = searchParams.get('product')
-          if (productParam) {
-              const parsedProduct = JSON.parse(productParam)
-              setProduct(parsedProduct)
-          }
-      } catch (err) {
-          setError('Error loading product data')
-          console.error('Error parsing product:', err)
+    try {
+      const productParam = searchParams.get('product');
+      if (productParam) {
+        const parsedProduct = JSON.parse(productParam);
+        setProduct(parsedProduct);
       }
-  }, [searchParams])
+    } catch (err) {
+      setError('Error loading product data');
+      console.error('Error parsing product:', err);
+    }
+  }, [searchParams]);
+
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.max(1, Number(e.target.value)); // Ensure quantity is at least 1
+    const value = Math.max(1, Number(e.target.value)); // Min 1
     setQuantity(value);
   };
 
@@ -62,67 +55,78 @@ function ProductContent() {
       const cart = localStorage.getItem("cart") || "[]";
       const cartItems: Product[] = JSON.parse(cart);
 
-      // Check if the product already exists in the cart
       const existingItemIndex = cartItems.findIndex((item) => item._id === product._id);
 
       if (existingItemIndex > -1) {
-        // If product exists, update the quantity
-        cartItems[existingItemIndex]._id += quantity;
+        cartItems[existingItemIndex].quantity += quantity;
       } else {
-        // Otherwise, add the new product to the cart with the selected quantity
         cartItems.push({ ...product, quantity });
       }
 
-      // Save the updated cart to localStorage
       localStorage.setItem("cart", JSON.stringify(cartItems));
-
-      // Navigate to the Cart page
       router.push("/cart");
     }
   };
 
-
-  if (error) return <div className="text-red-500 p-4">{error}</div>
-  if (!product) return <div className="p-4">Loading product details...</div>
+  if (error) return <div className="text-red-500 p-4">{error}</div>;
+  if (!product) return <div className="p-4 text-center text-gray-500">Loading product details...</div>;
 
   return (
-    <>
-         <section>
-            
-               <Card  className="flex-col md:flex-row gap-8 items-center ">
-                     <div className="flex flex-col md:flex-row w-full">
-                        <CardHeader className="w-full md:w-1/2 h-auto">
-                             {product.imageURL  && <Image width={305} height={375} src={product.imageURL} alt="image" className="w-full h-auto object-cover"></Image>}
-                         </CardHeader>
-                         <div className="flex flex-col md:w-1/2 mt-10">
-                             <CardTitle className='px-4 md:px-10 py-6 flex flex-col justify-center'>
-                                 <p className="text-xl md:text-2xl font-semibold">{product.name}</p>
-                                 <p className="py-2 text-lg md:text-xl">{product.price}</p>
-                             </CardTitle>
-                             <CardDescription className="text-[#505977] text-sm md:text-base ml-10">
-                                 <h1 className="font-semibold">Description</h1>
-                                 <p className="my-4 md:my-6 ">{product.description}</p>
+    <section className="max-w-6xl mx-auto px-6 py-16">
+      <Card className="flex flex-col md:flex-row gap-12 items-start md:items-center shadow-lg rounded-lg border border-gray-200">
+        {/* Product Image */}
+        <CardHeader className="w-full md:w-1/2 rounded-lg overflow-hidden">
+          {product.imageURL && (
+            <Image
+              src={product.imageURL}
+              alt={product.name}
+              width={600}
+              height={600}
+              className="w-full h-auto object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+              priority
+            />
+          )}
+        </CardHeader>
 
-                                 <div className="flex items-center ml-10">
-                                    <label htmlFor="quantity" className="mr-4 text-lg font-medium">
-                                        Quantity:
-                                    </label>
-                                    <input id="quantity"type="number"value={quantity}onChange={handleQuantityChange}className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-gray-500"min={1}/>
-                                 </div>
-                             </CardDescription>
-                             <CardDescription className="text-[#505977] text-sm md:text-base ml-10 gap-[200px] mb-">Features: {product.features}
-                                
-                             </CardDescription>
-                             <button onClick={handleAddToCart} className="w-full md:w-[146px] h-[56px] bg-[#2A254B] text-white mt-4 md:mt-0 ml-10">
-                               Add to cart
-                             </button>
-                         </div>
-                     </div>
-                 </Card>
-                
-         </section>
-     </>  
-  )
+        {/* Product Details */}
+        <div className="flex flex-col w-full md:w-1/2 space-y-6 px-4 md:px-0">
+          <CardTitle>
+            <h1 className="text-3xl font-extrabold text-gray-900">{product.name}</h1>
+            <p className="mt-1 text-indigo-600 text-2xl font-semibold">${product.price.toFixed(2)}</p>
+          </CardTitle>
+
+          <CardDescription>
+            <h2 className="text-gray-700 font-semibold mb-2">Description</h2>
+            <p className="text-gray-600 leading-relaxed">{product.description}</p>
+          </CardDescription>
+
+          <div className="flex items-center space-x-4">
+            <label htmlFor="quantity" className="font-semibold text-gray-700">
+              Quantity:
+            </label>
+            <input
+              id="quantity"
+              type="number"
+              min={1}
+              value={quantity}
+              onChange={handleQuantityChange}
+              className="w-20 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            />
+          </div>
+
+          <CardDescription>
+            <h2 className="text-gray-700 font-semibold mb-2">Features</h2>
+            <p className="text-gray-600">{product.features}</p>
+          </CardDescription>
+
+          <button
+            onClick={handleAddToCart}
+            className="mt-4 bg-indigo-600 text-white py-3 rounded-md font-semibold hover:bg-indigo-700 transition w-full md:w-44 self-start shadow-md"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </Card>
+    </section>
+  );
 }
-
-

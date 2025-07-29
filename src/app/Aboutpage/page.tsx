@@ -1,38 +1,63 @@
-import Image from "next/image"
-import aboutimage1 from "@/images/products/aboutpageImage2.png"
-import aboutimage2 from "@/images/products/aboutpageImage1.png"
-import { Newsletter } from "@/components/homepage"
-export default function About(){
-    return(
-        <div>
-            <div className=" w-[100vw] h-[200px] justify-center flex pt-[50px] text-[30px] font-[clashdisplay] text-[#2A254B] ">
-                <p>A brand built on the love of craftmanship,<br/>quality and outstanding customer service</p>
-            </div>
-            <div className="flex md:flex-col lg:flex-col-reverse">
-                <div className="text-justify text-[#2A254B] mt-[50px]">
-                    <p className=" text-[20px] font-[clashdisplay] font-bold text-[#2A254B] ml-[20px] ">From a studio in London to a global brand with<br/>over 400 outlets</p>
-                    <p className="text-[#505977] text-[Satoshi] pt-[20px] ml-[20px] ">When we started Avion, the idea was simple. Make high quality furniture<br/> affordable  and available for the mass market </p>
-                    <p className="text-[#505977] text-[Satoshi] text-[15px] pt-[20px] ml-[20px] ">Handmade and lovingly crafted furniture, and homeware is what we live,<br/> breathe and design so our Chelsea boutique become the hotbed for the<br/>London interior design community.</p>
-                </div>
-                <div className="xl:ml-[160px] lg:ml-[0] ">
-                    <Image src={aboutimage1} alt="aboutimage"  width={630}></Image>
-                </div>
-                
-                
-                
-            </div>
-            <div className="flex md:flex-col-reverse lg:flex-col mb-28">
-                <Image src={ aboutimage2} alt="aboutimage"width={670}></Image>
-                <div className="flex">
-                <div className="text-justify text-[#2A254B] mt-[50px]">
-                    <p className=" text-[20px] font-[clashdisplay] font-bold text-[#2A254B] ml-[20px] ">From a studio in London to a global brand with<br/>over 400 outlets</p>
-                    <p className="text-[#505977] text-[Satoshi] pt-[20px] ml-[20px] ">When we started Avion, the idea was simple. Make high quality furniture<br/> affordable  and available for the mass market </p>
-                    <p className="text-[#505977] text-[Satoshi] text-[15px] pt-[20px] ml-[20px] ">Handmade and lovingly crafted furniture, and homeware is what we live,<br/> breathe and design so our Chelsea boutique become the hotbed for the<br/>London interior design community.</p>
-                </div>
-            </div>
-            </div>
-            <Newsletter/>
+import Image from "next/image";
+import aboutimage1 from "@/images/products/aboutpageImage2.png";
+import aboutimage2 from "@/images/products/aboutpageImage1.png";
+import { Newsletter } from "@/components/homepage";
+
+export default function About() {
+  return (
+    <div className="px-4 md:px-10 lg:px-20">
+      {/* Heading */}
+      <section className="w-full py-12 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#2A254B] font-[clashdisplay]">
+          A brand built on the love of craftsmanship,<br />
+          quality and outstanding customer service
+        </h2>
+      </section>
+
+      {/* Section 1 */}
+      <section className="flex flex-col-reverse lg:flex-row items-center gap-10 mb-20">
+        <div className="flex-1 text-[#2A254B]">
+          <h3 className="text-xl font-bold font-[clashdisplay] mb-4">
+            From a studio in London to a global brand with <br /> over 400 outlets
+          </h3>
+          <p className="text-[#505977] text-base mb-4">
+            When we started Avion, the idea was simple. Make high quality furniture<br />
+            affordable and available for the mass market.
+          </p>
+          <p className="text-[#505977] text-sm">
+            Handmade and lovingly crafted furniture and homeware is what we live,<br />
+            breathe and design. Our Chelsea boutique became the hotbed for the<br />
+            London interior design community.
+          </p>
         </div>
-    )
+        <div className="flex-1">
+          <Image src={aboutimage1} alt="Crafted furniture in studio" width={630} />
+        </div>
+      </section>
+
+      {/* Section 2 */}
+      <section className="flex flex-col lg:flex-row items-center gap-10 mb-28">
+        <div className="flex-1">
+          <Image src={aboutimage2} alt="London studio" width={670} />
+        </div>
+        <div className="flex-1 text-[#2A254B]">
+          <h3 className="text-xl font-bold font-[clashdisplay] mb-4">
+            From a studio in London to a global brand with <br /> over 400 outlets
+          </h3>
+          <p className="text-[#505977] text-base mb-4">
+            When we started Avion, the idea was simple. Make high quality furniture<br />
+            affordable and available for the mass market.
+          </p>
+          <p className="text-[#505977] text-sm">
+            Handmade and lovingly crafted furniture and homeware is what we live,<br />
+            breathe and design. Our Chelsea boutique became the hotbed for the<br />
+            London interior design community.
+          </p>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <Newsletter />
+    </div>
+  );
 }
-    

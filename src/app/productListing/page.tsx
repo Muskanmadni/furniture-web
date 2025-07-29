@@ -1,75 +1,71 @@
 "use client";
-import { useState, useEffect } from 'react';
-import Image from "next/image"
-import Link from "next/link"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-import headerImage from "@/images/products/productlistingpageHeader.jpg"
+import headerImage from "@/images/products/productlistingpageHeader.jpg";
 
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ProductData} from "@/sanity/sanity.query";
-import { CategoryData } from '@/sanity/sanity.query';
-
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ProductData } from "@/sanity/sanity.query";
+import { CategoryData } from "@/sanity/sanity.query";
 
 interface CategoryData {
-  name:string;
-  slug:string;
-  price:number;
-  imageURL:string;
-  
+  name: string;
+  slug: string;
+  price: number;
+  imageURL: string;
 }
 
 interface ProductData {
-    _id: string;
-    imageURL: string;
-    name:string
-    price: number;
-    description:string;
-    category:string| { name: string; slug: string; };
-    
+  _id: string;
+  imageURL: string;
+  name: string;
+  price: number;
+  description: string;
+  category: string | { name: string; slug: string };
 }
 
 export default function ProductList() {
   const [products, setProducts] = useState<ProductData[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductData[]>([]);
   const [categories, setCategories] = useState<CategoryData[]>([]);
-  const [filters, setFilters] = useState({ category: "", price: "", })
+  const [filters, setFilters] = useState({ category: "", price: "" });
 
-  // Fetch products and categories on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productData = await ProductData(); // Fetch products from Sanity
-        const categoryData = await CategoryData(); // Fetch categories from Sanity
+        const productData = await ProductData();
+        const categoryData = await CategoryData();
         setProducts(productData);
-        setFilteredProducts(productData); // Initialize filtered products
-        setCategories(categoryData); // Populate categories dynamically
+        setFilteredProducts(productData);
+        setCategories(categoryData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, []);
 
-  // Filter products whenever filters change
   useEffect(() => {
     let filtered = [...products];
-    console.log("Filters:", filters);
 
-    // Filter by category (ensure you're comparing the category.slug if it's an object)
     if (filters.category) {
-      console.log("Applying category filter:", filters.category);
       filtered = filtered.filter((product) => {
         if (typeof product.category === "string") {
           return product.category === filters.category;
         } else if (product.category && typeof product.category === "object") {
-          return product.category.slug === filters.category; // Compare slugs
+          return product.category.slug === filters.category;
         }
         return false;
       });
     }
 
-    // Sort by price
     if (filters.price === "low-to-high") {
       filtered.sort((a, b) => a.price - b.price);
     } else if (filters.price === "high-to-low") {
@@ -77,42 +73,53 @@ export default function ProductList() {
     }
 
     setFilteredProducts(filtered);
-    console.log("Filtered products:", filtered); // Debug filtered products
   }, [filters, products]);
 
-  // Handlers for filter changes
-  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log("Category selected:", event.target.value);
-    setFilters((prev) => ({ ...prev, category: event.target.value }));
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilters((prev) => ({ ...prev, category: e.target.value }));
   };
 
-  const handlePriceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters((prev) => ({ ...prev, price: event.target.value }));
+  const handlePriceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilters((prev) => ({ ...prev, price: e.target.value }));
   };
 
   const handleFilterReset = () => {
-    setFilters({ category: "", price: "", });
+    setFilters({ category: "", price: "" });
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       {/* Header Image */}
-      <div className="relative w-full h-[200px]">
-        <Image src={headerImage} alt="image" layout="fill" objectFit="cover" />
-        <div className="absolute inset-0 flex items-center justify-start sm:justify-center md:justify-center lg:justify-start">
-          <h1 className="text-white text-4xl">Our Products</h1>
+      <div className="relative w-full h-52 sm:h-72 md:h-96">
+        <Image
+          src={headerImage}
+          alt="Our Products"
+          fill
+          style={{ objectFit: "cover" }}
+          priority
+          className="brightness-75"
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-white text-4xl sm:text-5xl font-extrabold drop-shadow-lg">
+            Our Products
+          </h1>
         </div>
       </div>
 
-      {/* Filter Bar */}
-      <div className="flex flex-wrap items-center justify-between bg-gray-100 px-4 py-3 mb-6 rounded-lg ">
-        {/* Category Filter */}
-        <div className=" items-center lg:block md:block xl:block hidden">
-          <label className="mr-2 text-sm font-medium">Category:</label>
+      {/* Filters */}
+      <div className="max-w-7xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4 bg-white rounded-lg shadow-md mt-8">
+        <div className="flex items-center space-x-2">
+          <label
+            htmlFor="category"
+            className="text-gray-700 font-semibold text-sm"
+          >
+            Category:
+          </label>
           <select
+            id="category"
             value={filters.category}
             onChange={handleCategoryChange}
-            className="border border-gray-300 rounded px-3 py-1 text-sm"
+            className="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
           >
             <option value="">All</option>
             {categories.map((category) => (
@@ -123,13 +130,18 @@ export default function ProductList() {
           </select>
         </div>
 
-        {/* Price Filter */}
-        <div className="flex items-center">
-          <label className="mr-2 text-sm font-medium">Price:</label>
+        <div className="flex items-center space-x-2">
+          <label
+            htmlFor="price"
+            className="text-gray-700 font-semibold text-sm"
+          >
+            Price:
+          </label>
           <select
+            id="price"
             value={filters.price}
             onChange={handlePriceChange}
-            className="border border-gray-300 rounded px-3 py-1 text-sm"
+            className="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
           >
             <option value="">All</option>
             <option value="low-to-high">Low to High</option>
@@ -137,17 +149,22 @@ export default function ProductList() {
           </select>
         </div>
 
-        {/* Clear Filters Button */}
         <button
           onClick={handleFilterReset}
-          className="bg-gray-300 px-4 py-1 rounded text-sm font-medium text-gray-700 hover:bg-gray-400"
+          className="bg-indigo-100 text-indigo-700 hover:bg-indigo-200 px-4 py-1 rounded-md font-semibold transition"
         >
           Clear Filters
         </button>
       </div>
 
-      {/* Product List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:ml-0 text-justify gap-4">
+      {/* Product Grid */}
+      <main className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {filteredProducts.length === 0 && (
+          <p className="col-span-full text-center text-gray-500">
+            No products found.
+          </p>
+        )}
+
         {filteredProducts.map((product) => (
           <Link
             key={product._id}
@@ -155,38 +172,44 @@ export default function ProductList() {
               pathname: "/allproductlistpage",
               query: { product: JSON.stringify(product) },
             }}
+            className="group"
+            passHref
           >
-            <Card className="h-[200px] w-[200px] xl:mb-[200px] md:mb-[200px] lg:mb-[200px] mb-[300px] border-none text-justify">
-              <CardHeader className="xl:w-[300px] lg:w-[250px] md:w-[250px] w-[300px]">
+            <Card className="flex flex-col cursor-pointer rounded-lg shadow-md hover:shadow-lg transition-shadow bg-white">
+              <CardHeader className="overflow-hidden rounded-t-lg">
                 {product.imageURL && (
                   <Image
-                    width={305}
-                    height={375}
                     src={product.imageURL}
-                    alt="image"
-                    className="xl:h-[300px] lg:h-[200px] md:h-[200px]"
+                    alt={product.name}
+                    width={400}
+                    height={300}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 )}
               </CardHeader>
+
               <CardTitle>
-                <p className="ml-6 whitespace-nowrap text-ellipsis">{product.name}</p>
+                <p className="truncate px-4 py-2 font-semibold text-gray-900">
+                  {product.name}
+                </p>
               </CardTitle>
-              <CardDescription className="my-4 md:my-6 hidden">
+
+              <CardDescription className="px-4 text-gray-600 line-clamp-2">
                 {product.description}
               </CardDescription>
-              <CardFooter>
-                <p>${product.price}</p>
-                
+
+              <CardFooter className="px-4 py-3 border-t border-gray-200 font-semibold text-indigo-600">
+                ${product.price.toFixed(2)}
               </CardFooter>
             </Card>
           </Link>
         ))}
-      </div>
+      </main>
 
       {/* View Products Button */}
-      <div className="my-10 flex justify-center items-center pt-[100px]">
-        <Link href="/productListing">
-          <button className="bg-[#F9F9F9] py-4 px-6 rounded-[5px] text-[#2A254B]">
+      <div className="flex justify-center py-12">
+        <Link href="/productListing" passHref>
+          <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-md font-semibold shadow-lg transition">
             View Products
           </button>
         </Link>
@@ -194,4 +217,3 @@ export default function ProductList() {
     </div>
   );
 }
-

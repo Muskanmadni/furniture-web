@@ -1,81 +1,89 @@
+'use client';
+
 import { FacebookFilled, InstagramFilled, LinkedinFilled, PinterestFilled, SkypeFilled, TwitterOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import React from 'react';
 
 export const Footer = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // your signup logic or alert
+  };
+
   return (
-    <>
-      <div className='px-6 md:px-12 py-8 bg-[#2A254B] footer'>
-        <div className="flex flex-wrap gap-12 md:gap-[100px] lg:gap-[200px]">
-          {/* Menu area */}
-          <div className="text-gray-500 w-full sm:w-auto">
-            <h1 className="text-lg md:text-xl font-bold">Menu</h1>
-            <div className='space-y-2'>
-              <h1><Link href={'/'}>New Arrivals</Link></h1>
-              <h1><Link href={'/'}>Best sellers</Link></h1>
-              <h1><Link href={'/'}>Recently viewed</Link></h1>
-              <h1><Link href={'/'}>Popular this week</Link></h1>
-              <h1><Link href={'/'}>All Products</Link></h1>
-            </div>
-          </div>
-
-          {/* Categories area*/}
-          <div className="text-gray-500 w-full sm:w-auto">
-            <h1 className="text-lg md:text-xl font-bold">Categories</h1>
-            <div className='space-y-2'>
-              <h1><Link href={'/'}>Crockery</Link></h1>
-              <h1><Link href={'/'}>Furniture</Link></h1>
-              <h1><Link href={'/'}>Homeware</Link></h1>
-              <h1><Link href={'/'}>Plant pots</Link></h1>
-              <h1><Link href={'/'}>Chairs</Link></h1>
-            </div>
-          </div>
-
-          {/* Company area */}
-          <div className="text-gray-500 w-full sm:w-auto">
-            <h1 className="text-lg md:text-xl font-bold">Our Company</h1>
-            <div className='space-y-2'>
-              <h1><Link href='/about'>About us</Link></h1>
-              <h1><Link href={'/'}>Vacancies</Link></h1>
-              <h1><Link href={'/'}>Contact us</Link></h1>
-              <h1><Link href={'/'}>Privacy</Link></h1>
-              <h1><Link href={'/'}>Return policy</Link></h1>
-            </div>
-          </div>
-
-          {/* Mail */}
-          <div className="text-white w-full sm:w-auto">
-            <h1 className="text-lg md:text-xl font-bold">Join our mailing list</h1>
-            <div className='mt-4'>
-              <input
-                type="text"
-                placeholder="your@email.com"
-                className='w-full sm:w-[250px] lg:w-[300px] h-[48px] p-2 bg-transparent opacity-35 border border-white rounded-md'
-              />
-              <button className='mt-2 sm:mt-0 sm:ml-2 w-full sm:w-[100px] h-[48px] bg-white text-[#2A254B] rounded-md'>
-                Sign up
-              </button>
-            </div>
-          </div>
+    <footer className="bg-[#2A254B] text-gray-300 px-8 md:px-20 py-16">
+      <div className="flex flex-wrap justify-between gap-12 max-w-7xl mx-auto">
+        {/* Menu */}
+        <div className="w-full sm:w-auto">
+          <h2 className="text-white text-xl font-semibold mb-5">Menu</h2>
+          <nav className="flex flex-col space-y-3 text-gray-400 hover:text-white transition">
+            <Link href={'/'} className="hover:underline">New Arrivals</Link>
+            <Link href={'/'} className="hover:underline">Best sellers</Link>
+            <Link href={'/'} className="hover:underline">Recently viewed</Link>
+            <Link href={'/'} className="hover:underline">Popular this week</Link>
+            <Link href={'/'} className="hover:underline">All Products</Link>
+          </nav>
         </div>
 
-        <hr className='bg-[#4E4D93] my-8' />
+        {/* Categories */}
+        <div className="w-full sm:w-auto">
+          <h2 className="text-white text-xl font-semibold mb-5">Categories</h2>
+          <nav className="flex flex-col space-y-3 text-gray-400 hover:text-white transition">
+            <Link href={'/'} className="hover:underline">Crockery</Link>
+            <Link href={'/'} className="hover:underline">Furniture</Link>
+            <Link href={'/'} className="hover:underline">Homeware</Link>
+            <Link href={'/'} className="hover:underline">Plant pots</Link>
+            <Link href={'/'} className="hover:underline">Chairs</Link>
+          </nav>
+        </div>
 
-        {/* Footer area */}
-        <div className='flex flex-wrap justify-between items-center text-white gap-4'>
-          <div>
-            <h1>Copyright 2022 Avion LTD</h1>
-          </div>
-          <div className='flex gap-4'>
-            <Link href={'/'}><LinkedinFilled size={20} /></Link>
-            <Link href={'/'}><FacebookFilled size={20} /></Link>
-            <Link href={'/'}><InstagramFilled size={20} /></Link>
-            <Link href={'/'}><SkypeFilled size={20} /></Link>
-            <Link href={'/'}><TwitterOutlined size={20} /></Link>
-            <Link href={'/'}><PinterestFilled size={20} /></Link>
-          </div>
+        {/* Company */}
+        <div className="w-full sm:w-auto">
+          <h2 className="text-white text-xl font-semibold mb-5">Our Company</h2>
+          <nav className="flex flex-col space-y-3 text-gray-400 hover:text-white transition">
+            <Link href='/about' className="hover:underline">About us</Link>
+            <Link href={'/'} className="hover:underline">Vacancies</Link>
+            <Link href={'/'} className="hover:underline">Contact us</Link>
+            <Link href={'/'} className="hover:underline">Privacy</Link>
+            <Link href={'/'} className="hover:underline">Return policy</Link>
+          </nav>
+        </div>
+
+        {/* Mailing List */}
+        <div className="w-full sm:w-auto text-white max-w-xs">
+          <h2 className="text-xl font-semibold mb-5">Join our mailing list</h2>
+          <form className="flex flex-col sm:flex-row gap-3 sm:gap-2" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="your@email.com"
+              aria-label="Email address"
+              required
+              className="flex-grow h-12 px-4 rounded-md bg-transparent border border-gray-600 placeholder-gray-500 text-white focus:outline-none focus:border-indigo-500 transition"
+            />
+            <button
+              type="submit"
+              className="h-12 w-full sm:w-auto px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-md transition"
+            >
+              Sign up
+            </button>
+          </form>
         </div>
       </div>
-    </>
+
+      <hr className="border-gray-700 my-10 max-w-7xl mx-auto" />
+
+      {/* Bottom Bar */}
+      <div className="flex flex-col md:flex-row justify-between items-center text-gray-400 max-w-7xl mx-auto gap-4">
+        <p>© 2022 Avion LTD</p>
+        <div className="flex space-x-6 text-xl text-gray-400 hover:text-white transition">
+          <Link href={'/'}><LinkedinFilled /></Link>
+          <Link href={'/'}><FacebookFilled /></Link>
+          <Link href={'/'}><InstagramFilled /></Link>
+          <Link href={'/'}><SkypeFilled /></Link>
+          <Link href={'/'}><TwitterOutlined /></Link>
+          <Link href={'/'}><PinterestFilled /></Link>
+        </div>
+      </div>
+    </footer>
   );
 };

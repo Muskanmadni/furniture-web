@@ -1,23 +1,42 @@
 import { Button } from "./ui/button";
-import heroImage from "@/images/products/herosectionImage.png"
+import heroImage from "@/images/products/herosectionImage.png";
 import Image from "next/image";
 import Link from "next/link";
 
-export function HeroSection(){
-    return(
-        <div className=" bg-white flex-none order-1 flex-grow-0 lg:pl-[100px] xl:ml-[300px]">
-            <div className="bg-[#2A254B] lg:w-[800px] lg:h-[400px]  sm:text-center lg:text-center md:w-[680px] md:h-[350px] "> 
-                <h2 className="text-white  lg:text-[30px] sm:text-[30px] md:text-[20px] pl-12  xl:text-[20px] xl:text-left xl:pt-[20px] xl:pl-[20px] ">The furniture brand for the <br/>future, with timeless designs</h2>
-                <Link href={"productlist"}>
-                <Button variant="destructive" className="lg:self-end lg:mb-4 bg-[#494465] text-[#8e8a9f] mt-[70px] ml-[100px] xl:mt-[50px] xl:ml-[50px] xl:justify-start xl:flex md:justify-center ">
-                    View Products
-                </Button>
-                </Link>
-                <p className="text-white ml-12 mt-32 lg:justify-end sm:text-center md:text-center md:text-[15px] xl:text-left xl:text-[11px] xl:ml-[10px]">A new era in eco friendly furniture with Avelon, the French luxury retail brand <br/>with nice fonts, tasteful colors and a beautiful way to display things digitally <br/>using modern web technologies.</p>
-                <div className="xl:absolute xl:top-[135px] xl:left-[829px]">
-                    <Image src={heroImage}alt="hero-section-image " className="lg:hidden sm:hidden xl:block hidden xl:w-[370px] xl:h-[400px]"></Image>
-                </div>
-            </div>
+export function HeroSection() {
+  return (
+    <section className="relative bg-[#2A254B] text-white py-16 px-6 md:px-12 lg:px-24 xl:px-32">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+        {/* Text Content */}
+        <div className="space-y-8">
+          <h1 className="text-3xl sm:text-4xl font-bold leading-snug">
+            The furniture brand for the future, <br className="hidden sm:block" />
+            with timeless designs
+          </h1>
+
+          <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+            A new era in eco-friendly furniture with Avelon, the French luxury
+            retail brand with elegant fonts, tasteful colors, and beautiful
+            digital presentation using modern web technologies.
+          </p>
+
+          <Link href="/productlist">
+            <Button className="bg-white text-[#2A254B] hover:bg-gray-100 font-medium transition px-6 py-2 rounded-md">
+              View Products
+            </Button>
+          </Link>
         </div>
-    )
+
+        {/* Image */}
+        <div className="hidden xl:block">
+          <Image
+            src={heroImage}
+            alt="Hero Section Image"
+            className="w-full h-auto object-contain"
+            priority
+          />
+        </div>
+      </div>
+    </section>
+  );
 }

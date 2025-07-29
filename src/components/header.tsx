@@ -1,86 +1,70 @@
-
-
 "use client";
 
 import Link from "next/link";
-import { SearchOutlined, } from "@ant-design/icons";
-import React, { useState } from 'react';
-import { MenuIcon, ShoppingCart, UserCircle, } from "lucide-react";
+import { SearchOutlined } from "@ant-design/icons";
+import { MenuIcon, ShoppingCart, UserCircle } from "lucide-react";
+import React, { useState } from "react";
 
-
-
-
-
-// export default function Header({}: { products : any}) {
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
- 
+  return (
+    <nav className="bg-white w-full shadow-md sticky top-0 z-50">
+      <div className="flex items-center justify-between px-6 py-4 md:px-12">
+        {/* Logo */}
+        <Link href="/" className="text-2xl font-bold text-[#2A254B]">
+          Avion
+        </Link>
 
-return (
-  <nav className="bg-white w-full h-20">
-    <input type="checkbox" id="check" />
-    <label htmlFor="check" className="block md:hidden">
-      <MenuIcon {...{ onClick: toggleMenu }} className="text-black float-right mt-6" />
-    </label>
-    <Link href={"/"}>
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold pl-10 pt-20 absolute">Avion</h1>
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex items-center gap-8 text-[#2A254B] text-base">
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/Aboutpage">About</Link></li>
+          <li><Link href="/cart">Cart</Link></li>
+          <li><Link href="/wishlistpage">Wishlist</Link></li>
+          <li><SearchOutlined className="text-xl cursor-pointer" /></li>
+          <li><Link href="/cart"><ShoppingCart className="w-5 h-5" /></Link></li>
+          <li><Link href="/accountpage"><UserCircle className="w-5 h-5" /></Link></li>
+        </ul>
+
+        {/* Mobile Menu Toggle */}
+        <button className="md:hidden" onClick={toggleMenu}>
+          <MenuIcon className="w-6 h-6 text-[#2A254B]" />
+        </button>
       </div>
-    </Link>
-    <div>
-      <ul
-        className={`md:flex justify-end pt-7 pr-4 text-[20px] items-center gap-4  ${isMenuOpen ? 'flex flex-col absolute top-20 justify-center text-center w-[100%] h-[450px]  bg-slate-950 text-white transition-all ease-in-out duration-300  ' : 'hidden'}`} 
-      >
-        <Link href="/">
-          <li className="hover:text-blue-500">home</li>
-        </Link>
-        <Link href="/Aboutpage">
-          <li className="hover:text-blue-500">about</li>
-        </Link>
-        <Link href="/cart">
 
-          <li className="hover:text-blue-500">cart
-          </li>
-        </Link>
-        <li className="hover:text-blue-500">wishlist</li>
-        <li>
-          <SearchOutlined className="hover:text-blue-500" />
-        </li>
-        <Link href="/cart">
-          <li>
-            <ShoppingCart className="hover:text-blue-500" />
-          </li>
-        </Link>
-        <Link href="/accountpage">
-        <li>
-          <UserCircle className="hover:text-blue-500" />
-        </li>
-        </Link>
-      </ul>
-    </div>
-
-    
-  </nav>
-);
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-[#2A254B] text-white py-6 px-6 space-y-4 text-center transition-all duration-300 ease-in-out">
+          <Link href="/" className="block hover:text-blue-300">Home</Link>
+          <Link href="/Aboutpage" className="block hover:text-blue-300">About</Link>
+          <Link href="/cart" className="block hover:text-blue-300">Cart</Link>
+          <Link href="/wishlistpage" className="block hover:text-blue-300">Wishlist</Link>
+          <SearchOutlined className="block mx-auto text-white text-xl" />
+          <Link href="/cart"><ShoppingCart className="mx-auto w-5 h-5" /></Link>
+          <Link href="/accountpage"><UserCircle className="mx-auto w-5 h-5" /></Link>
+        </div>
+      )}
+    </nav>
+  );
 }
+
 export function Header2() {
   return (
-    <nav className="bg-gray-50 w-full h-14 hidden lg:block xl:block">
-      <ul className="w-full h-16  flex gap-8 text-center  items-center justify-center  text-gray-400">
-        <li>All products</li>
-        <li>Plant Pot</li>
-        <li>Ceramics</li>
-        <li>Tables</li>
-        <li>Chairs</li>
-        <li>Crockery</li>
-        <li>Tableware</li>
-        <li>Cutlery</li>
+    <nav className="bg-gray-50 w-full border-b hidden lg:block">
+      <ul className="max-w-7xl mx-auto flex justify-center items-center gap-10 text-sm text-gray-600 py-4 tracking-wide">
+        <li className="cursor-pointer hover:text-[#2A254B]">All Products</li>
+        <li className="cursor-pointer hover:text-[#2A254B]">Plant Pots</li>
+        <li className="cursor-pointer hover:text-[#2A254B]">Ceramics</li>
+        <li className="cursor-pointer hover:text-[#2A254B]">Tables</li>
+        <li className="cursor-pointer hover:text-[#2A254B]">Chairs</li>
+        <li className="cursor-pointer hover:text-[#2A254B]">Crockery</li>
+        <li className="cursor-pointer hover:text-[#2A254B]">Tableware</li>
+        <li className="cursor-pointer hover:text-[#2A254B]">Cutlery</li>
       </ul>
     </nav>
   );
 }
+

@@ -1,131 +1,84 @@
 "use client";
-import { useState, useEffect } from 'react';
-import Link from "next/link"
-import { CardHeader , CardFooter,CardTitle  ,Card, CardDescription } from "./ui/card"
-import { ProductData} from "@/sanity/sanity.query";
-import Image from 'next/image'
 
-export function CeramicProducts(){
-    interface  ceramicProducts{
-      _id: string;
-      imageURL: string;
-      name: string;
-      price: number;
-      description: string;
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { CardHeader, CardFooter, CardTitle, Card, CardDescription } from "./ui/card";
+import { ProductData } from "@/sanity/sanity.query";
+
+interface CeramicProduct {
+  _id: string;
+  imageURL: string;
+  name: string;
+  price: number;
+  description: string;
+}
+
+export function CeramicProducts() {
+  const [products, setProducts] = useState<CeramicProduct[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const ceramicData = await ProductData();
+      setProducts(ceramicData);
     }
-  
-    const [Data, setData] = useState<ceramicProducts[]>([]);
-    
-        useEffect(() => {
-            async function fetchData() {
-                const ceramicproductData = await ProductData();
-                setData(ceramicproductData);
-            }
-            fetchData();
-        }, []);
-        
-        console.log(Data);
-      return(
-          <>
-        <section>
-          <div className="px-4 md:px-8 py-12 text-[#2A254B] mt-12 ">
-            {/* Title */}
-            <h1 className="text-2xl font-semibold">New Chairs</h1>
-  
-            {/* Product Items */}
-            <div className="lg:grid md:grid-cols-4 gap-8 mt-12  ">
-              {Array.isArray(Data) && Data.length > 0 && Data[16] && (
-                <Link 
-                href={{
-                  pathname: '/ceramicproductpage',
-                  query: { product: JSON.stringify(Data[16]) }
-                }}
-                >
-                <Card key={Data[16]._id} className="h-[200px] w-[200px] mb-[100px] border-none text-justify">
-                  <CardHeader className=" w-[250px]">
-                    {Data[16].imageURL && <Image width={300} height={600} src={Data[16].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
-                  </CardHeader>
-                  <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Data[16].name}</p></CardTitle>
-                  <CardDescription className='hidden'>{Data[16].description}</CardDescription>
-                  <CardFooter>
-                    <p>${Data[16].price}</p>
-                  </CardFooter>
-                </Card>
-                </Link>           
-              )}
-              {Array.isArray(Data) && Data.length > 0 && Data[5] && (
-                <Link 
-                href={{
-                  pathname: '/ceramicproductpage',
-                  query: { product: JSON.stringify(Data[5]) }
-                }}
-                >
-                <Card key={Data[5]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
-                  <CardHeader className=" w-[250px]">
-                    {Data[5].imageURL && <Image width={300} height={600} src={Data[5].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
-                  </CardHeader>
-                  <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Data[5].name}</p></CardTitle>
-                  <CardDescription className='hidden'>{Data[5].description}</CardDescription>
-                  <CardFooter>
-                    <p>${Data[5].price}</p>
-                  </CardFooter>
-                </Card>
-                </Link>           
-              )}
-              {Array.isArray(Data) && Data.length > 0 && Data[13] && (
+    fetchData();
+  }, []);
 
-                <Link 
-                href={{
-                  pathname: '/ceramicproductpage',
-                  query: { product: JSON.stringify(Data[13]) }
-                }}
-                >
-                
-                <Card key={Data[13]._id} className="lg:h-[200px] lg:w-[200px] xl:h-[200px] xl:w-[200px]  border-none text-justify">
-                  <CardHeader className=" w-[250px]">
-                    {Data[13].imageURL && <Image width={300} height={600} src={Data[13].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]'></Image>}
-                  </CardHeader>
-                  <CardTitle><p className="ml-6 whitespace-nowrap  text-ellipsis">{Data[13].name}</p></CardTitle>
-                  <CardDescription className='hidden'>{Data[13].description}</CardDescription>
-                  <CardFooter>
-                    <p>${Data[13].price}</p>
-                  </CardFooter>
-                </Card>
-                </Link>
+  // Select specific product indices manually (if required)
+  const selectedIndices = [16, 5, 13, 15];
+  const selectedProducts = selectedIndices
+    .map((index) => products[index])
+    .filter(Boolean);
 
-              )}
-              {Array.isArray(Data) && Data.length > 0 && Data[15] && (
+  return (
+    <section className="py-16 px-4 md:px-12 text-[#2A254B] bg-white">
+      <div className="max-w-7xl mx-auto">
+        {/* Title */}
+        <h2 className="text-3xl font-bold mb-12">New Chairs</h2>
 
-                <Link 
-                href={{
-                  pathname: '/ceramicproductpage',
-                  query: { product: JSON.stringify(Data[15]) }
-                }}
-                >
-                <Card key={Data[15]._id} className="h-[200px] w-[200px] mb-[200px] border-none text-justify">
-                  <CardHeader className=" w-[250px]">
-                    {Data[15].imageURL && <Image width={300} height={600} src={Data[15].imageURL} alt="image" className='xl:h-[300px] lg:h-[300px]' ></Image>}
-                  </CardHeader>
-                  <CardTitle><p className="ml-6">{Data[15].name}</p></CardTitle>
-                  <CardDescription className='hidden'>{Data[15].description}</CardDescription>
-                  <CardFooter>
-                    <p>${Data[15].price}</p>
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {selectedProducts.map((product) => (
+            <Link
+              key={product._id}
+              href={{
+                pathname: "/ceramicproductpage",
+                query: { product: JSON.stringify(product) },
+              }}
+              className="hover:scale-[1.02] transition-transform duration-300"
+            >
+              <Card className="shadow-md hover:shadow-xl border-none rounded-xl overflow-hidden">
+                <CardHeader className="p-0">
+                  <Image
+                    src={product.imageURL}
+                    alt={product.name}
+                    width={400}
+                    height={300}
+                    className="w-full h-[250px] object-cover"
+                  />
+                </CardHeader>
+                <div className="p-4">
+                  <CardTitle className="truncate">{product.name}</CardTitle>
+                  <CardDescription className="hidden">{product.description}</CardDescription>
+                  <CardFooter className="pt-2 text-lg font-medium">
+                    ${product.price}
                   </CardFooter>
-                </Card>
-                </Link>           
-              )}
-            </div>
-  
-            {/* View Collection Button */}
-            <div className="my-10 flex justify-center items-center">
-              <Link href={'productListing'}>
-              <button className="bg-[#F9F9F9] py-4 px-6 rounded-[5px] text-[#2A254B]">
-                View collection
-              </button>
-              </Link>
-            </div>
-          </div>
-        </section>
-      </>
-    );
-};
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
+
+        {/* View Collection Button */}
+        <div className="mt-16 flex justify-center">
+          <Link href="/productListing">
+            <button className="bg-[#F9F9F9] text-[#2A254B] px-6 py-3 rounded-md hover:bg-gray-100 transition">
+              View Collection
+            </button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
