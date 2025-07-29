@@ -27,7 +27,7 @@ export function BrandDetails() {
         <div className="bg-white shadow-md rounded-2xl p-6 text-center hover:shadow-xl transition duration-300">
           <CreditCardOutlined className="text-[#2A254B] text-3xl mb-4" />
           <h3 className="font-semibold text-lg mb-2">Unbeatable Prices</h3>
-          <p className="text-gray-600 text-sm">For our material and quality, you won't find better prices anywhere.</p>
+          <p className="text-gray-600 text-sm">For our material and quality, you wont find better prices anywhere</p>
         </div>
 
         {/* Feature 4 */}
